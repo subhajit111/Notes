@@ -1,0 +1,16 @@
+Port:
+-------
+A port is a logical endpoint for network communication.
+Ports are used to distinguish different services or processes running on a single device (e.g., a server or a computer).
+Ports are identified by numbers, such as 80 for HTTP, 443 for HTTPS, 22 for SSH, and so on.
+Ports are used to route incoming network traffic to the appropriate application or service within a device.
+Ports are part of the transport layer of the OSI model (e.g., TCP or UDP ports).
+
+----------
+Protocol:
+----------
+A protocol is a set of rules or conventions that define how data is transmitted and received over a network.
+Protocols define the format of data packets, the order of packet exchange, error handling, and other aspects of network communication.
+Examples of network protocols include HTTP, FTP, SMTP, and TCP/IP.
+Protocols are often associated with a specific port. For example, the HTTP protocol typically uses port 80, while HTTPS uses port 443.
+Protocols are typically categorized into layers based on their functions in the OSI model, such as application layer protocols, transport layer protocols, and network layer protocols.
