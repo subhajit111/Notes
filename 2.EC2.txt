@@ -123,7 +123,19 @@ VPN Lab	|
 - Once VPN is active you can access to the private resources through mobaxterm or other things.
 
 
+------------------
+Placement Groups |
+------------------
+- When creating multiple instace or resoueces they might be created in different AZs. And some latency might occure.
+- To solve this issue AWS has given a service called Placement Groups.
+- It allows us to keep all the servers in one place.
 
+TYPES: 
+	- Cluster : All servers are with in a single AZ and created under one hardware
+	
+	- Partition : One AZ but the hardware may be different
+	
+	- Spread: One AZ but all the servers are in different hardware
 
 
 

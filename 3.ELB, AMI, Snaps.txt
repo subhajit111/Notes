@@ -33,7 +33,15 @@
  - We can share the AMI with other account by ----> action -----> edit permissions ---> private AMI ---> give the account no in shared account.
  - We can also make our AMI either private or public in action ---> edit permissions
  
-
+ 
+ 
+------------------- 
+Lifecycle manager |
+-------------------
+- Using this AWS service we can create, retain, delete out snapsshots automatically. 
+- We have the option to create Instance level AMI or only EBS level snaps. 
+- We can define the creation time for our snaps, as well as the retain date for those snaps. 
+- We can enable to disable our role. 
 
 
 
