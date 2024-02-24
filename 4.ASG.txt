@@ -1,0 +1,6 @@
+ASG - Auto Scaling Group
+
+ - This is used to balane the servers required in order to maintain the demand.
+ - It can automatically scale up and down the servers based on the upcoming requests.
+ - Like terraform ASG also has the current and desired state options. 
+ - If the desired state of instance is maintained then there will be no downtime. 

@@ -132,9 +132,44 @@ VPC Peering |
 ------------
 - Connection between two VPC to share private resources either one way or both ways is called VPC peering.
 - Peering can be done between differnt regions also.
+- While creating peering we have to choose one requester VPC which should be in our region and account.
+- And we have to specify the acceptor VPC which can be any where. [In other account or in other region also]
+- Once created we have to manually accept the peering connection request.
+- In order for the peering to work we have to create 2 RT. 
+	
+	- First one for the requester : dest   -> subnet CIDR of acceptor VPC [under which subnet the target/acceptor resource is runnning]
+									target -> peering connection
+									source -> requester subnet CIDR [undet which the requester resouece is running]
 
 
+	- Second one for acceptor     : dest   -> requester subnet CIDR
+									target -> peering connection
+									source -> acceptor subnet CIDR
 
+>>>> FOR ENTIRE VPC PEERING WE HAVE TO PROVIDE CIDR FOR ENTIRE VPC NOT JUST A SUBNET. 
+									
+- Peering connection is like a tunnel, It is better practice to have 2 way connection
+- We can also specify one way connection by using only one RT for requester
+
+
+----------------
+RT & NAT setup |
+----------------
+ - dest ---> where you want to go
+ - target -> through which you want to go [like IGW]
+ - source -> from where you want to go [subnet association]
+-> Nat gateway will be always created under the public subnet. [Very Imp]
+-> Create a new RT for nat-gateway and Make sure to add nat-gateway in the routes as well
+- Add your private subnets in the subnet association. [Dont add you public subnet in this] 
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
+Public Subnet ----> IGW & NAT-gateway ----> acts as a jump server for private subnets 
+
+NAT-gateway ------> private subnets are associated
+
+Public ec2 instace ----> ssh to private instace ----> private instace has nat-gateway attached to its subnet -----> can ping google.com
+---------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
