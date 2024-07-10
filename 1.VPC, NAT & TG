@@ -1,0 +1,236 @@
+- Region is a Georgraphic area, Availability zone is a physical data center
+
+
+----------------------
+VPC [video - 2:58:00]
+----------------------
+
+- VPC ---> Cloud based datacenter which is owning by "YOU"
+- VPC is lunched on top of the AZ. No one can touch VPC other than who have access not even AWS.
+- VPC is a Regional service.
+- Before lunching many reginal services we need VPC.
+- Max 5 VPC per region as a soft limit.
+- Every VPC is separate that means even if every VPC has same CIDR, then that IP is working only inside that VPC.
+- For inter connection of 2 VPC they should have differnt CIDR blocks. (VPC peering) 
+- VPC-pre-req ----> Region, Size(How many services you need to create)
+- Every resource we are creating under VPC needs a certain IP and that is why we are providing CIDR block to create a bunch of IPs
+- X.X.X.X/x --> This format is called CIDR(Classless Inter Domain Routing) determines the amount of IPs we are creating
+- Each VPC creates 4 default subcomponents while cration. (Main NACL, DHCP option set, Default SG, Main routetable)
+- NACL ---> Network Access Control List [Provides security at a subnet level]
+- SG .....> Provides sercurity at instance level
+- DHCP option set ----> Dynamic Host Configuration Protocol
+- Default VPC has public subnets in every AZs. If we want we can create private subnets inside every AZ by going to the subnet session and create subnets.
+- The subnets range is all within the CIDR block of the VPC. [if i have one apple and i have to divide that then i will devide the apple in multiple ways but the apple will remain as 1]
+- CIDR block should be bet /16 - /28 [in order to get uniform divisions we choose even numbers]
+- Each VPC reserves 5 IPs for it's benifit.[see SUBNET below]
+
+VPC-ENDPOINT :
+-------------
+- We can use VPC endpoint to create an endpoint which will work as a key to connect to our instances
+- We can create it undet VPC ----> Endpoint
+- It is a chargable service so delete it after the use
+
+-----------------------------------------------------------------------------
+VPC is an apple and the subnets are pieces of the apple 
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Each IPv4 address is indeed a 32-bit address, but it does not have 4.3 billion IPs "inside" it. Instead, each IPv4 address represents a single unique IP address. The 4.3 billion figure refers to the total number of unique IPv4 addresses that can be created using a 32-bit address scheme. This large number is due to the 2^32 possible combinations of 32 bits, which is approximately 4.3 billion.
+---------------------------------------------------------------------------
+These are private IP address which are reserved for the internal communication.
+10.0.0.0 - 10.255.255.255
+172.16.0.0 - 172.31.255.255
+192.168.0.0 - 192.168.255.255
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+SUBNET
+- While creating the VPC we have to create the subnet as well, otherwise we wont be able to create ec2.
+- The range of VPC(eg. 10.0.0.0/24)will create 2 ^ (32-24) = 2 ^ 8 = 256 nos of ip address
+- When a vpc is created it also creates 4 additional resources like security groups etc.
+- https://www.davidc.net/sites/default/subnets/subnets.html = CIDR calculator
+- It is not mandatory to create equal subnets
+- It is not mandatory to create to choose all the CIDR block to create all subnets in one go.
+- Not all IPs will be usable in a subnet. [5 ips will be reserved by out AZ  of AWS]
+- First 4 IPs and Last Ip will be reserved by AWS in all the subnets.
+	
+	10.0.0.0 - Network access
+	10.0.0.1 - Reserved by AWS for VPC router
+	10.0.0.2 - Reserved by AWS for DNS 
+	10.0.0.3 - Reserved by AWS for future use
+	100.0.255 - Network broadcast address
+
+- Minimum 2 subnets are "recommended" for each vpc coz. of high availability
+- Minimum 1 subnets is "mandatory" for each vpc
+- We can repeat AZ while creating subnets. Depending upon how many subnets you need and how many AZs are available you can keep multiple subnets in one AZ.
+- While creating the subnets we can only choose the range between the CIDR given during the VPC creation.
+- One subnet can not exist in more than one AZ meaning the same CIDR can not esit in differnet region with in a VPC.
+- One a range of CIDR under the VPC has been allocated to a subnet in a specific AZ we can not use that same range in another AZ.
+- After creation of a subnet --- go to action and edit subnet --- enable auto assign public IP --- this will automatically assign a public IP for all the resources inside the publi subnet
+
+-------------
+ROUTE TABLE |
+-------------
+- Each subnet in your AWS Virtual Private Cloud (VPC) is associated with a route table that controls the traffic flow between subnets.
+- RT is 2 types public and private
+- By default every VPC has a main RT created
+- If IGW [internet gateway] is attched to the RT then it will work as public RT
+- If IGW is not attched to the RT then it will work as private RT
+- RT is how we connect our subnets to internet
+- After configuring a RT make sure to edit the associate subnet allocation ---> add the subnets under explicit subnet association under the proper RT.
+- Go to edit routes ----> attach routes ---> add your routes ---> source IGW
+- We can also configure RT for VPC peering
+- Wihtout custom RT which should have destination CIDR and target as the VPC peering we can't access the destination resources through VPC peering
+- Make sure to also add the source subnet in RT for VPC peering
+- ONE IGW PER ONE RT
+- When you add a subnet under a Rt under Explicit subnet associations then it will automatically remove that subnet from other RT.
+- In AWS a subnet can only be associate with one RT at a time. 
+
+-------------
+NAT-gateway |
+-------------
+- Network Address Translation. 
+- This help to create a one way connection for our private subnet
+- The resources undet the private RT will be able to connect to internet for work but others can not connect to our resoueces using internet.
+- This is useful when our resources need to download a certain update without getting exposed to other.
+- NAT creates a connection bet public subnet to private RT.
+- NAT will alz be created under the public subnet
+- THe public RT already have internet using IGW so we use NAT to give network access to our resources attached to the private RT. 
+- Note: We dont directly attach NAT to internet. 
+- NAT will be created inside the web-subnet [which has internet access] and then attach them to the resources inside the private subnet.
+
+-----
+NACL |
+-----
+- This works as a additional security layer for VPC.
+- This works on the subnet level and which restricts certains access as per the CIDR defined inside it.
+- In real world we normally by adjusting the RT for traffic but NACL give us that additional layer of security which restricts certain access.
+- For example in a VPC peering which works in SUBNET level we can define the NACL to only get or send traffic to a certain CIDR range/subnet.
+
+-In summary, while Route Tables handle routing, NACLs play a critical role in network security and access control. 
+ Customizing NACLs can help you enforce specific security policies,meetcompliance requirements, and provide an additional layer of security, especially in scenarios involving VPC peering
+ and complex network architectures.
+ The choice of whether to customize NACLs will depend on your specific security and networking needs.
+
+---------------
+- Ways to connect to private subnets
+	- NAT gateway
+	- Transit gateway
+	- Direct connect
+	- VPN [openvpn ---> username - openvpnas]
+
+- 4 tier architecture is how many types of resources or types of things you are specifying inside a VPC. 
+- Like you have specified 4types of works but created multiple resources under a specified type of work. 
+---------------
+
+----Practice challenges------
+- By default all the crated subnets will be under the main RT.
+- If you create a IGW and associate it with the main RT the all the subnets will act as PUBLIC.
+- Create a new RT and add the subnets you want to be private and it will work as private./ or we can create a new RT as public and add specific RT under it.
+- To connect to a EC2 instance inside a private subnet use ssh -i inside the public subnet but use the private IP of the instance that is in the privat subnet.
+- We can keep all the private subnets under a single RT but we can also build separate RT and add them to differnt subnets as per our requirements.
+- Suppose we want a specific RT to have nat-gateway and others dont then we can build separate RT for those private subnets.
+
+------------
+VPC Peering |
+------------
+- Connection between two VPC to share private resources either one way or both ways is called VPC peering.
+- Peering is always a 1 to 1 connection
+- Peering can be done between differnt regions also.
+- While creating peering we have to choose one requester VPC which should be in our region and account.
+- And we have to specify the acceptor VPC which can be any where. [In other account or in other region also]
+- Once created we have to manually accept the peering connection request. 
+- One peering is needed for peering bet 2 VPC. 
+- One RT can be associated with one subnet at a time so if you have a privavte RT then add the peering under that.
+- Create a peering and add that peering undet the RT you can for peerin in both requestor and acceptot VPC. [suppose you want only private subnet peering then add peering under private RT]
+	
+	- First one for the requester : dest   -> subnet CIDR of acceptor VPC [under which subnet the target/acceptor resource is runnning]
+									target -> peering connection
+									source -> requester subnet CIDR [under which the requester resouece is running] [It is under the subnet association]
+
+
+	- Second one for acceptor     : dest   -> requester subnet CIDR
+									target -> peering connection
+									source -> acceptor subnet CIDR [In subnet association we can add the source subnet]
+
+>>>> FOR ENTIRE VPC PEERING WE HAVE TO PROVIDE CIDR FOR ENTIRE VPC NOT JUST A SUBNET.
+ 
+									
+- Peering connection is like a tunnel, It is better practice to have 2 way connection
+- We can also specify one way connection by using only one RT for requester
+
+
+----------------
+RT & NAT setup |
+----------------
+ - dest ---> where you want to go
+ - target -> through which you want to go [like IGW]
+ - source -> from where you want to go [subnet association]
+-> Nat gateway will be always created under the public subnet. [Very Imp]
+-> Create a new RT for nat-gateway and Make sure to add nat-gateway in the routes as well
+- Add your private subnets in the subnet association. [Dont add you public subnet in this] 
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
+Public Subnet ----> IGW & NAT-gateway ----> acts as a jump server for private subnets 
+
+NAT-gateway ------> private subnets are associated
+
+Public ec2 instace ----> ssh to private instace ----> private instace has nat-gateway attached to its subnet -----> can ping google.com
+---------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------
+Transit Gateway |
+-----------------
+- TG is the gateway for all the interconnections between VPCs. 
+- With TG we dont have to manually setup connections between each VPC.
+- We have to create all the VPCs under one big CIDR which will be working as our TG. 
+- For TG to work we have to provide a CIDR which must be covering all the VPC CIDR in our Route Table.
+- If I want my VPC 1 to have access to all the VPC then i will provide the TG CIDR in the main RT, which will have all other VPC CIDR. 
+- All VPC under the TG must have the route setup inside theie main RT. 
+
+Transit Gateway LAB
+--------------------
+you should take the CIDR which will leads to a common CIDR 
+
+10.0.0.0/24
+10.1.0.0/24
+10.2.0.0/24
+10.3.0.0/24
+
+
+10.0.0.0/8
+
+
+Cleanup above lab 
+
+
+Transit Gateway
+
+- GO to the fresh region 
+- Create 4 VPCs with the below CIDR 
+
+10.0.0.0/24
+10.1.0.0/24
+10.2.0.0/24
+10.3.0.0/24
+
+
+Go to the Transit Gateway - Create it No CIDR as its an optional 
+
+Wait till TGW is successfully created 
+
+Go to Transit Gateway Attachment - Create it 
+Name your VPC and choose your Transit Gateway ID and VPC and then create 
+
+Repeat for all of your VPCs 
+
+Go to the appropriate routes and do the common Route entry - 10.0.0.0/8 
+
+
+
+Now Launch two EC2 instances in any of the two VPC and try to test connectivity
+
+
+ https://docs.aws.amazon.com/vpc/latest/tgw/transit-gateway-quotas.html
+
+
+
+

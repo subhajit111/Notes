@@ -1,0 +1,139 @@
+Load Balancer : 
+
+ - Elastic Load Balancing automatically distributes your incoming traffic across multiple targets, such as EC2 instances, containers, and IP addresses, in one or more Availability Zones.
+ - It monitors the health of its registered targets, and routes traffic only to the healthy targets.
+ 
+------- 
+Types :
+-------
+- ALB :: Balancing HTTP and HTTPs traffics for application architecture [EC2 instances etc.], including microservices and containers. 
+	   : Helps to reroute the requests and forword it to the server. If one server is busy forword it to another server
+
+- NLB :: Balancing traffic which comes from TCP, UDP and TLS. 
+		
+	TLS :
+		Transport Layer Security, or TLS, is a widely adopted security protocol designed to facilitate privacy and data security for communications over the Internet.
+		A primary use case of TLS is encrypting the communication between web applications and servers, such as web browsers loading a website.
+
+- GWLB :: Balancing traffic which comes from 3rd party virtual appliances. 
+	
+	- when we are using whatsapp to open a link and go to an html page to download something here WP works as thirdparty
+	- So here GWLB checks the thirdparty requests before giving access to the content. 
+	
+- CLB :: No longer used. Considered as loagacy. 
+
+--------------
+Target Group |
+--------------
+- TG is like a box under which we can have multiple resources.
+- To create an LB we need a target group and this TG will give the target details to our LB.
+- We can have multiple resources like either instances or IP addresses or Lambda fundtions or even other ALB inside the TG. 
+- Always make sure to add the TG undet the listener inside the LB. Otherwise it will not be recognised.
+
+
+
+
+
+---------
+ALB Lab |
+---------
+
+Launch your first ec2 using below International Script 
+-------------------------------------------------------
+
+Name - international
+AMI - Amazon Linux 
+Instance Type -t2.micro
+Choose your VPC, Public Subnet, Enable Public IP 
+Choose your existing (above) SG 
+Advanced details > update below user data 
+
+#!/bin/bash
+
+yum install httpd -y
+
+systemctl enable httpd
+
+mkdir /var/www/html/international/
+
+echo "<h1>This is international Website</h1>" > var/www/html/international/index.html
+
+systemctl start httpd
+
+	
+Launch your Second ec2 using below domestic Script 
+---------------------------------------------------
+
+Name - domestic
+AMI - Amazon Linux 
+Instance Type -t2.micro
+Choose your VPC, Public Subnet, Enable Public IP 
+Choose your existing (above) SG 
+Advanced details > update below user data 
+	
+	
+#!/bin/bash
+
+yum install httpd -y
+
+systemctl enable httpd
+
+mkdir /var/www/html/domestic/
+
+echo "<h1>This is domestic Website</h1>" > /var/www/html/domestic/index.html
+
+systemctl start httpd
+	
+	
+-----------------------
+Create a Target Group |
+-----------------------
+
+Choose a target type > Instance 
+Target group name > international
+Choose your VPC 
+Health Checks > path > /international/index.html [after creating make sure it should be unused state]
+Choose Internal EC2 > Click on > Include as Pending below 
+Create a Target Group
+
+
+Choose a target type > Instance 
+Target group name > domestic
+Choose your VPC 
+Health Checks > path > /domestic/index.html [after creating make sure it should be unused state]
+Choose Internal EC2 > Click on > Include as Pending below 
+Create a Target Group
+	
+
+------------	
+Create ALB |
+------------	
+Go to the Load Balancer and create a ALB 
+Scheme - Internet-facing 
+Choose your VPC and TWO Subnets and SG 
+
+Under listener rule - Choose International as a Default action 
+
+Once your LB is ready - you will have a one DNS record (A)
+
+Under - Listeners and rules
+Click on your protocol 
+> Click on Add rule > name > Domestic
+
+> Add condition > path > /domestic* > confirm > Next 
+
+Forward to target groups > Choose the TG > domestic 
+
+Priority > 1 >>> Create 
+
+
+
+
+
+
+
+
+
+
+
+

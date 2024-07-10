@@ -1,0 +1,103 @@
+ASG - Auto Scaling Group
+
+ - ASG is not chargeable. 
+ - Dont manually change anything in ec2 coz once ASG is up it will handle it. 
+ - This is used to balane the servers required in order to maintain the demand.
+ - It can automatically scale up and down the servers based on the upcoming requests.
+ - Like terraform ASG also has the current and desired state options. 
+ - If the desired state of instance is maintained then there will be no downtime. 
+
+Benifits - Business As Usual [BAU]
+		 - Cost Optimization
+		 - Disaster recovery 
+		 
+----------------------------------------------------------------------------------------------------------------------------------------
+Horizental Scaling - When we are upgrading on the same sever like keep on increasing its ram or storage. 
+				   - There will be a downtime. 
+				   
+Vertical Scaling   - When we are addin more servers 
+				   - There will be no downtime. 
+---------------------------------------------------------------------------------------------------------------------------------------
+
+Differnce bet AMI and Lunch template ?
+	AMI - Can be used directly to create the instances
+		- cant be versioned 
+		
+	LT  - Will be used by ASG to indirectly create the instances
+		- We can version it. 
+----------------------------------------------------------------------------------------------------------------------------------------
+----------------
+LUNCH TEMPLATE |
+----------------
+- Lunch Template -> Collection of Configuration items, application details etc. [OS, application conf, DB conf, SG, EBS etc.]
+
+Creation :
+---------
+- Go to ec2 and go to lunch template and create LT.
+- Give LT name and version name
+- We can specify tags if needed and can copy form a source template as well.
+- Setup rest as Ec2 
+- We can setup a lot of things in advanced details including user data. 
+
+-------------
+Creating ASG : 
+------------- 
+- Go to ASG and create
+- Choose your template and go next
+- Choose your VPC and choose all the subnets and go next
+- We have an option to integrate with LB [we will do that later]
+- Health chech we can set as 30
+- Gour size --> min , desired and max can be set up to our requirement. [ex. 1,2,3]
+- We can also choose instance maintenance policy as per our requirement
+- We can also setup notification as SNS which will notify us as the ASG makes changes. 
+- Go next and create ASG
+
+- We can check the activities of our ASG inside ASG activities
+- In ec2 instance make sure instance lifecycle is inservice. 
+- We can edit the group details inside ASG to change the min, max and desired state and it will automatically changes the instances. 
+- Even if we delete a server manually, ASG will automatically create new servers to match the desired state. 
+- We can also keep min and desired as 0 
+
+
+------------------------
+ASG with Load Balancer |
+------------------------
+- While creating the ASG in the load balancer page we can choose to either create or attach existing LB.
+- To create new LB just choose attach new LB ---> Type of LB 
+- Make sure it is internet facing
+- Create a new target group or click on existing if you have anything
+
+
+-----------
+QUESTIONS |
+-----------
+- What is VPC Lattice integration options  while creating ASG ?
+- EC2 health check option ?
+- Enable group metrics collection within CloudWatch ?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

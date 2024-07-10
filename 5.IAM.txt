@@ -1,0 +1,5 @@
+One IAM user can be part of multiple gorups. 
+
+To reset a user's password ---> Go to that user ---> security cred ----> manage console ----> we can setup a new custom password 
+
+To disable a user's access ---> Go to that user ---> security cred ----> manage console ----> Disable the access. 

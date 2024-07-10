@@ -1,0 +1,18 @@
+Cloud trail
+------------
+- It is used to track user activities and API uses in AWS. 
+- It has logs of all the activities of the users. 
+- Events are generated for a perticular region only. 
+
+- Inside the event history we can see the all the event that has happened in the AWS. This is a bydefault feature provided by AWS.
+- But it will only store past 60 days data. 
+
+Custom Trails/Create Trails :
+-----------------------------
+- Custom trails are chargeable and will be mostly sotred in a s3 bucket. 
+- If we want to store the user activities data for a long period of time then we need to create custom trails
+- It will be stored in s3 bucket and it can be stored as long as we want.
+- We dont normally check to filter the logs, We use tools like Athena to check and filter the logs. [Athena - Analytical tool]
+- We can also encrypt the logs for s3. 
+- We can also enable revalidate option which will check the logs are stored properly or not.
+- We also have option for SNS topics for this. 

@@ -1,0 +1,1572 @@
+
+------------------------------------------
+Git hub repo: https://github.com/discover-devops
+
+Installation
+apt-get install git-all
+git --version
+
+These are common Git commands used in various situations:
+
+start a working area (see also: git help tutorial)
+   clone     Clone a repository into a new directory
+   init      Create an empty Git repository or reinitialize an existing one
+
+work on the current change (see also: git help everyday)
+   add       Add file contents to the index
+   mv        Move or rename a file, a directory, or a symlink
+   restore   Restore working tree files
+   rm        Remove files from the working tree and from the index
+
+examine the history and state (see also: git help revisions)
+   bisect    Use binary search to find the commit that introduced a bug
+   diff      Show changes between commits, commit and working tree, etc
+   grep      Print lines matching a pattern
+   log       Show commit logs
+   show      Show various types of objects
+   status    Show the working tree status
+
+grow, mark and tweak your common history
+   branch    List, create, or delete branches
+   commit    Record changes to the repository
+   merge     Join two or more development histories together
+   rebase    Reapply commits on top of another base tip
+   reset     Reset current HEAD to the specified state
+   switch    Switch branches
+   tag       Create, list, delete or verify a tag object signed with GPG
+
+collaborate (see also: git help workflows)
+   fetch     Download objects and refs from another repository
+   pull      Fetch from and integrate with another repository or a local branch
+   push      Update remote refs along with associated objects
+
+
+
+git COmmand:
+==============
+
+git + Verb
+
+===========================
+Dated: 10t Feb Class Notes
+---------------------------
+
+Git Bash DownLoad:
+https://git-scm.com/download/win
+
+Linux Instalattion:
+
+apt-get install git-all
+git --version
+
+mkdir my_project
+cd my_project
+git init 
+
+git config --global user.name "devops"
+git config --global user.email "devops@gmail.com"
+git config --global core.editor "notepad"
+git config --list
+
+
+---------------------------
+#1: Crteate a Repo
+
+git init 
+
+GitLab $   git init
+Initialized empty Git repository in /root/my_project/.git/
+GitLab $
+
+GitLab $ ls -la
+total 12
+drwxr-xr-x 3 root root 4096 Feb 10 15:12 .
+drwx------ 5 root root 4096 Feb 10 15:08 ..
+drwxr-xr-x 7 root root 4096 Feb 10 15:12 .git
+GitLab $
+
+
+GitLab $ ls
+mycode.py
+GitLab $
+GitLab $
+GitLab $ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        mycode.py
+
+nothing added to commit but untracked files present (use "git add" to track)
+GitLab $
+
+$ git add mycode.py
+
+
+GitLab $ git add mycode.py
+GitLab $
+GitLab $ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   mycode.py
+
+GitLab $
+
+
+git commit -m "Added a new Python script"
+
+GitLab $ git status
+On branch master
+nothing to commit, working tree clean
+GitLab $
+
+=======================
+
+GitLab $ git commit -m " Added file A"
+[master 415e616]  Added file A
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 fileA.txt
+GitLab $
+
+GitLab $ git log
+commit 415e6165b8686374085186a1d357cb558f938c25 (HEAD -> master)
+Author: devops <devops@gmail.com>
+Date:   Sat Feb 10 17:08:17 2024 +0000
+------------------------------------
+
+GitLab $ git cat-file -p d03ee2e600-----. COMMIT 
+
+tree 9d967c9bd4af43201c57475cafe3cab017081c65
+parent 415e6165b8686374085186a1d357cb558f938c25
+author devops <devops@gmail.com> 1707585127 +0000
+committer devops <devops@gmail.com> 1707585127 +0000
+
+ Added some text  on file A
+GitLab $
+
+
+git cat-file -p 9d967c9b 
+
+GitLab $ git cat-file -p 9d967c9b
+100644 blob f7dd212b9a5caf07688fc3aa9cdc5ecdafbd9322    .gitignore
+100644 blob 3e11fc9606b9d5fe21e771ce70ca3b6d58e6de89    file2.txt
+100644 blob fa4bd6dc887354ed8cef8862e519043bae27ae0b    fileA.txt
+100644 blob e69de29bb2d1d6434b8b29ae775ad8c2e48c5391    fileZ.txt
+100644 blob e69de29bb2d1d6434b8b29ae775ad8c2e48c5391    myfile.txt
+GitLab $
+
+git cat-file -p  fa4bd6dc8
+9d967c9bd4af43201c57475cafe3cab017081c65
+
+
+1. Introduction to Version Control System
+1.1 What is Version Control
+1.2 How Git Born ??? 
+1.3 What is Git and Rachitecture of Git
+1.4 Git Command Line
+1.5 How to Install  Git
+1.6 Git Setup
+1.7 Getting Help
+
+
+2. Git Concepts and Commnds
+2.1 Getting a Git Repository
+2.2 Recording Changes to the Repository
+2.3 Viewing the Commit History
+2.4 Undoing Things
+
+
+3. Git Branching
+3.1 What/Why of Git Branching
+3.2 Basic Branching and Merging
+3.3 Branch Management
+3.4 Branching Workflows
+3.5 Troubleshooting: Merge Conflict
+3.6 Rebasing
+
+
+4. Remote Git on the Server
+4.1 Git HUB
+4.2 Contributing to a Project
+4.3 Maintaining a Project
+4.4 Setting Up the Server
+4.5 What is GitLab
+4.6 Troubleshooting
+==================
+date 11th Feb calss Notes
+----------------------------
+
+What is Git Branching?
+Branching in Git allows you to diverge from the main line of development and 
+continue working without affecting the main branch. 
+
+It's a powerful concept that enables parallel development, experimentation, and 
+collaboration.
+
+By default when you initilaize the repo : MASTER will get created
+Apart from master branch I can create many other brances. 
+
+1: We were having a MASTER branch 
+2: from the MASTER Br we have created a feature-branch 
+3: Check out to feature-branch
+4: We made some chhhnages in our code 
+5: We are merging this chnage to the MAIN or MASTER branch 
+
+
+Git $ git merge feature-branch
+Updating d03ee2e..2623cee
+Fast-forward
+ new_feature_file.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 new_feature_file.txt
+Git $
+
+
+Git $ git commit -m "Add a new1 feature"
+[feature-branch 9f318ab] Add a new1 feature
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 new1_feature_file.txt
+Git $
+
+
+Git $ git commit -m "Update main branch"
+[master 63072a6] Update main branch
+ 1 file changed, 1 insertion(+)
+Git $
+
+021fdb11c  ------
+
+
+git branch 
+git branch b100 master
+git checkout b100
+-------------------------
+
+
+6d4c1f3
+
+
+Git $  echo "Line from Branch MASTER" > new1_feature_file.txt
+Git $ git add new1_feature_file.txt
+Git $ git commit -m "Add changes from Branch MASTER"
+[master 807d4cd] Add changes from Branch MASTER
+ 1 file changed, 1 insertion(+)
+
+
+Git $ git merge branch-a
+Auto-merging new1_feature_file.txt
+CONFLICT (content): Merge conflict in new1_feature_file.txt
+Automatic merge failed; fix conflicts and then commit the result.
+Git $
+
+
+<<<<<<< HEAD
+Line from Branch MASTER
+=======
+Line from Branch A
+>>>>>>> branch-a
+
+======================================
+git branch -M main
+git remote add origin https://github.com/discover-devops/feb2024.git
+
+ 391  cd my_project7new
+  392  ls
+  393  git init
+  394  touch file1.txt
+  395  echo "Content for file1" > file1.txt
+  396  git add file1.txt
+  397  git status
+  398  git commit -m "Added file 1"
+  399  git stash list
+  400  git add file2.txt
+  401  touch file2.txt
+  402  git add  file2.txt
+  403  git stash save " Wip"
+  404  clear
+  405  ls
+  406  git status
+  407  git stash list
+  408  git stash apply
+
+============================
+
+
+https://www.jenkins.io/doc/book/getting-started/
+
+Jenkins Installation:
+
+#1: JAVA  Installatioon
+java -version
+sudo apt update
+sudo apt install openjdk-11-jre
+java -version
+
+
+#2 Jenkins Installation:
+
+sudo wget -O /usr/share/keyrings/jenkins-keyring.asc https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
+sudo apt-get update
+sudo apt-get install jenkins
+
+#3 Start the Jenkins Service
+
+
+sudo systemctl start jenkins  -----> Starting the service
+sudo systemctl status jenkins  -----> Cheking the status
+sudo systemctl enable jenkins  ------> after the reboot it will automartically start
+
+
+/etc/default/jenkins 
+
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+export PATH=$PATH:$JAVA_HOME/bin
+echo $PATH
+
+
+https://github.com/discover-devops/addressbook.git
+
+http://18.60.148.186:8080/github-webhook/
+
+
+repo --- Settings ---> Webhook
+http://<jenkins_Server_Address>:8080/github-webhook/
+
+
+JENKINS_URL/job/ComplileJob/build?token=TOKEN_NAME 
+
+=========================================================================================
+Password less ssh 
+====================
+
+Source M/C : 172.31.42.137
+
+Go to slave m/c:
+cat /etc/ssh/sshd_config
+PasswordAuthentication yes
+systemctl restart sshd
+systemctl status sshd
+
+Jenkins_Master $ ssh 172.31.28.132
+ubuntu@172.31.28.132's password:
+
+ssh-keygen -t rsa 
+
+authorized_keys
+
+Destination m/c: 172.31.28.132
+
+On Local Machine (Machine A)
+ssh-keygen -t rsa
+
+id_rsa  id_rsa.pub
+
+Copy: id_rsa.pub
+
+On Remote Machine (Machine B)
+authorized_keys ----> paste the content here 
+
+
+------------------------
+
+Delivery Job 
+
+https://github.com/discover-devops/JenkinsMaven/tree/main
+https://github.com/discover-devops/JenkinsMaven.git
+
+
+
+Tomcat Installtion 
+
+Prereq: Java
+
+sudo apt install unzip wget
+
+mkdir /opt/tomcat 
+cd /opt/tomcat 
+wget https://downloads.apache.org/tomcat/tomcat-8/v8.5.99/bin/apache-tomcat-8.5.99.zip
+unzip apache-tomcat-8.5.99.zip
+mv apache-tomcat-8.5.99 /opt/tomcat
+
+
+<role rolename="manager-gui"/>
+<role rolename="manager-script"/>
+<role rolename="manager-jmx"/>
+<role rolename="manager-status"/>
+<user username="admin" password="admin" roles="manager-gui, manager-script, manager-jmx, manager-status"/>
+<user username="deployer" password="deployer" roles="manager-script"/>
+<user username="tomcat" password="tomcat" roles="manager-gui"/>
+
+
+/opt/tomcat/apache-tomcat-8.5.99/webapps/manager/META-INF/context.xml
+/opt/tomcat/apache-tomcat-8.5.99/webapps/host-manager/META-INF/context.xml
+/opt/tomcat/apache-tomcat-8.5.99/conf/context.xml
+
+/opt/tomcat/webapps/host-manager/META-INF/context.xml
+/opt/tomcat/webapps/manager/META-INF/context.xml
+
+
+C:\Windows\System32\drivers\etc\hosts
+
+127.0.0.1:8080
+localhost:8080
+
+https://github.com/discover-devops/JenkinsMaven/blob/main/MavenInstallation_Windows10.md
+
+
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Hello') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+    }
+}
+========================================
+
+pipeline {
+    agent any
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        stage('Build') {
+            steps {
+                script {
+                    sh 'mvn clean install'
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                script {
+                    sh 'mvn test'
+                }
+            }
+        }
+        stage('Deploy') {
+            steps {
+                script {
+                    sh 'deploy-script.sh'
+                }
+            }
+        }
+    }
+    
+    post {
+        success {
+            echo 'Pipeline succeeded! Send notification.'
+        }
+        failure {
+            echo 'Pipeline failed! Send notification.'
+        }
+    }
+}
+
+
+====================================
+PAT 
+https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens
+
+
+
+        stage('Build Application') {
+            steps {
+                sh 'mvn -f java-tomcat-sample/pom.xml clean package'
+            }
+
+==========================================
+
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building...'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploying...'
+            }
+        }
+
+        stage('Email Approval') {
+            steps {
+                script {
+                    // Send email for approval
+                    emailext(
+                        subject: 'Approval Required',
+                        body: 'Please approve the deployment.',
+                        to: 'approver@example.com',
+                        attachLog: true,
+                        replyTo: 'jenkins@example.com'
+                    )
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline succeeded! Send notification.'
+        }
+        failure {
+            echo 'Pipeline failed! Send notification.'
+        }
+    }
+}
+
+stage('Email Approval Response') {
+    steps {
+        script {
+            // Check the email response
+            def response = emailextResponse()
+            if (response == 'Approved') {
+                echo 'Deployment approved. Proceeding...'
+            } else {
+                error 'Deployment rejected. Aborting...'
+            }
+        }
+    }
+}
+================================================
+
+
+Common Commands:
+  run         Create and run a new container from an image
+  exec        Execute a command in a running container
+  ps          List containers
+  build       Build an image from a Dockerfile
+  pull        Download an image from a registry
+  push        Upload an image to a registry
+  images      List images
+  login       Log in to a registry
+  logout      Log out from a registry
+  search      Search Docker Hub for images
+  version     Show the Docker version information
+  info        Display system-wide information
+
+Management Commands:
+  builder     Manage builds
+  container   Manage containers
+  context     Manage contexts
+  image       Manage images
+  manifest    Manage Docker image manifests and manifest lists
+  network     Manage networks
+  plugin      Manage plugins
+  system      Manage Docker
+  trust       Manage trust on Docker images
+  volume      Manage volumes
+
+Swarm Commands:
+  swarm       Manage Swarm
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  diff        Inspect changes to files or directories on a container's filesystem
+  events      Get real time events from the server
+  export      Export a container's filesystem as a tar archive
+  history     Show the history of an image
+  import      Import the contents from a tarball to create a filesystem image
+  inspect     Return low-level information on Docker objects
+  kill        Kill one or more running containers
+  load        Load an image from a tar archive or STDIN
+  logs        Fetch the logs of a container
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  rmi         Remove one or more images
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  wait        Block until one or more containers stop, then print their exit codes
+
+=======================================================
+https://hub.docker.com/  -----------> Create account 
+https://labs.play-with-docker.com/
+==========================================================
+
+https://docs.docker.com/desktop/
+https://docs.docker.com/engine/install/ubuntu/
+
+apt  install docker.io  -----> docker ubuntu 
+
+-------------------------------
+Installing Docker
+Before you can use Minikube, you need to have Docker CE (Community Edition) installed. Follow these steps to install Docker:
+
+Add the official Docker GPG key:
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+Add the Docker repository:
+
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+Install the necessary dependencies:
+
+sudo apt-get install apt-transport-https ca-certificates curl gnupg lsb-release -y
+Update the package list:
+
+sudo apt-get update
+Install Docker:
+
+sudo apt-get install docker-ce docker-ce-cli containerd.io -y
+Add your user to the docker group:
+
+sudo usermod -aG docker $USER
+
+Docker Install $ ip addr show
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: ens5: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 9001 qdisc mq state UP group default qlen 1000
+    link/ether 0e:6e:be:a5:87:c8 brd ff:ff:ff:ff:ff:ff
+    inet 172.31.28.132/20 metric 100 brd 172.31.31.255 scope global dynamic ens5
+       valid_lft 3415sec preferred_lft 3415sec
+    inet6 fe80::c6e:beff:fea5:87c8/64 scope link
+       valid_lft forever preferred_lft forever
+3: docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default
+    link/ether 02:42:0c:52:ed:7c brd ff:ff:ff:ff:ff:ff
+    inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
+       valid_lft forever preferred_lft forever
+
+=============================================
+
+Docker Commands:
+-----------------------
+
+docker + verb 
+
+docker run  -----> Create a Contianer 
+
+docker + run + image 
+
+
+root@Lab:~# docker run nginx
+Unable to find image 'nginx:latest' locally
+latest: Pulling from library/nginx
+e1caac4eb9d2: Pull complete
+88f6f236f401: Pull complete
+c3ea3344e711: Pull complete
+cc1bb4345a3a: Pull complete
+da8fa4352481: Pull complete
+c7f80e9cdab2: Pull complete
+18a869624cb6: Pull complete
+
+
+root@Lab:~# docker run hello-world
+Unable to find image 'hello-world:latest' locally
+latest: Pulling from library/hello-world
+c1ec31eb5944: Pull complete
+Digest: sha256:d000bc569937abbe195e20322a0bde6b2922d805332fd6d8a68b19f524b7d21d
+Status: Downloaded newer image for hello-world:latest
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+
+root@Lab:~#
+
+
+===================
+Dockerfile
+
+FROM  -----> who is my base Image 
+
+
+
+mkdir myDockerCodes
+
+cd myDockerCodes
+
+vi Dockerfile
+
+FROM alpine
+RUN apk --update redis
+CMD ["redis-server"]
+
+
+docker build -t myapp:v1 .
+
+. -------> is NOT the locastion of Dockerfile ONLY, it is the location of build context 
+ code ---->  
+
+
+root@Lab:~/myDockerCodes# docker build -t myapp:v1 .
+
+
+Sending build context to Docker daemon  2.048kB
+Step 1/3 : FROM alpine
+latest: Pulling from library/alpine
+4abcf2066143: Pull complete
+Digest: sha256:c5b1261d6d3e43071626931fc004f70149baeba2c8ec672bd4f27761f8e1ad6b
+Status: Downloaded newer image for alpine:latest
+ ---> 05455a08881e
+
+
+Step 2/3 : RUN apk add --update redis
+ ---> Running in f8e99b55257f
+fetch https://dl-cdn.alpinelinux.org/alpine/v3.19/main/x86_64/APKINDEX.tar.gz
+fetch https://dl-cdn.alpinelinux.org/alpine/v3.19/community/x86_64/APKINDEX.tar.gz
+(1/1) Installing redis (7.2.4-r0)
+Executing redis-7.2.4-r0.pre-install
+Executing redis-7.2.4-r0.post-install
+Executing busybox-1.36.1-r15.trigger
+OK: 11 MiB in 16 packages
+Removing intermediate container f8e99b55257f
+ ---> aa2af7894aa2
+
+
+
+Step 3/3 : CMD ["redis-server"]
+ ---> Running in 042242c13c97
+Removing intermediate container 042242c13c97
+ ---> 638b148b6656
+Successfully built 638b148b6656
+Successfully tagged myapp:v1
+root@Lab:~/myDockerCodes#
+
+
+=================================
+
+how to choose the BASE IMAGE ?   
+I know that this code is written in node 
+
+Image -----> nothing , install everthing on top of it will
+this is the recommended way
+
+vi Dockerfile
+
+FROM node:13-alpine
+COPY package* /usr/app/ 
+COPY app/* /usr/app/ 
+WORKDIR /usr/app 
+RUN npm install
+CMD ["node","server.js"]
+
+discoverdevops/<repo_name>
+
+discoverdevops/myprodapp
+
+Who you are and which repo ??
+who ----> User ID
+Which ----> you have to mention 
+
+docker push discoverdevops/myprodapp:tagname
+
+REPOSITORY    TAG         IMAGE ID       CREATED          SIZE
+my_node_app   latest      78a2e4927177   5 minutes ago    117MB
+
+
+REPOSITORY                 TAG               IMAGE ID       CREATED             SIZE
+discoverdevops/myprodapp   my_node_app-1.0   78a2e4927177   21 minutes ago      117MB
+
+
+docker tag my_node_app:latest discoverdevops/myprodapp:my_node_app-1.0
+rename        <old_name>                 <new_name>
+
+=====================
+
+COntainerizing the Python App 
+---------------------------------
+Code -----> Python  
+-----> Python must be installed on your machine 
+
+\_ I need to choose a base image that has python install 
+
+\_ Or ican choose scratch image ----manually install Python using RUN command in
+
+Flask==2.0.1
+Werkzeug==2.0.1
+
+vi Dockerfile
+
+FROM python:3.8-slim
+
+WORKDIR /app 
+
+COPY . /app 
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+EXPOSE 5000
+
+CMD ["python", "app.py"]
+
+----------------------------
+
+Dcoker Networking
+------------------
+
+root@Lab:~# docker network ls   ----------------> drivers availble 
+NETWORK ID     NAME      DRIVER    SCOPE
+c2976101d163   bridge    bridge    local
+5c1aab9b54cc   host      host      local
+446ff4f8704a   none      null      local
+root@Lab:~#
+
+
+bridge driver is the default driver that all container uses.
+Bridge driver -------> Docker0 interface  
+
+when we are using the default bridge driver: DNS is not supporting. 
+
+User define Bridge drivers
+----------------------------------
+User define Bridge Network has DNS feature enabled. 
+
+
+  719  docker network ls
+  720  docker network create --driver bridge my-net
+  721  docker network ls
+  722  ip addr show
+  723  docker network ls
+  724  docker inspect my-net
+  725  clear
+  726  docker run -dit --name c100 --network my-net alpine ash
+  727  docker run -dit --name c200 --network my-net alpine ash
+  728  docker ps
+  729  docker inspect my-net
+  730  docker ps -a
+  731  docker kill de3b961526eb
+  732  docker rm de3b961526eb e6a7aec6541c
+
+
+docker run -dit --name C500 -v my-vol:/data alpine ash
+docker volume create -d local -v /var/tmp --name my-new-vol
+--------------------------------------------------------------
+
+
+Minikube Installtion 
+============================
+
+Installing Docker
+-------------------
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get install apt-transport-https ca-certificates curl gnupg lsb-release -y
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io -y
+
+
+Installing Minikube
+=====================
+
+wget https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+sudo cp minikube-linux-amd64 /usr/local/bin/minikube
+sudo chmod +x /usr/local/bin/minikube
+
+Installing kubectl
+======================
+
+curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+chmod +x kubectl
+sudo mv kubectl /usr/local/bin/
+
+
+==============
+
+K8s $ kubectl
+kubectl controls the Kubernetes cluster manager.
+
+ Find more information at: https://kubernetes.io/docs/reference/kubectl/
+
+Basic Commands (Beginner):
+  create          Create a resource from a file or from stdin
+  expose          Take a replication controller, service, deployment or pod and expose it as a new
+Kubernetes service
+  run             Run a particular image on the cluster
+  set             Set specific features on objects
+
+Basic Commands (Intermediate):
+  explain         Get documentation for a resource
+  get             Display one or many resources
+  edit            Edit a resource on the server
+  delete          Delete resources by file names, stdin, resources and names, or by resources and
+label selector
+
+Deploy Commands:
+  rollout         Manage the rollout of a resource
+  scale           Set a new size for a deployment, replica set, or replication controller
+  autoscale       Auto-scale a deployment, replica set, stateful set, or replication controller
+
+Cluster Management Commands:
+  certificate     Modify certificate resources
+  cluster-info    Display cluster information
+  top             Display resource (CPU/memory) usage
+  cordon          Mark node as unschedulable
+  uncordon        Mark node as schedulable
+  drain           Drain node in preparation for maintenance
+  taint           Update the taints on one or more nodes
+
+Troubleshooting and Debugging Commands:
+  describe        Show details of a specific resource or group of resources
+  logs            Print the logs for a container in a pod
+  attach          Attach to a running container
+  exec            Execute a command in a container
+  port-forward    Forward one or more local ports to a pod
+  proxy           Run a proxy to the Kubernetes API server
+  cp              Copy files and directories to and from containers
+  auth            Inspect authorization
+  debug           Create debugging sessions for troubleshooting workloads and nodes
+  events          List events
+
+Advanced Commands:
+  diff            Diff the live version against a would-be applied version
+  apply           Apply a configuration to a resource by file name or stdin
+  patch           Update fields of a resource
+  replace         Replace a resource by file name or stdin
+  wait            Experimental: Wait for a specific condition on one or many resources
+  kustomize       Build a kustomization target from a directory or URL
+
+Settings Commands:
+  label           Update the labels on a resource
+  annotate        Update the annotations on a resource
+  completion      Output shell completion code for the specified shell (bash, zsh, fish, or
+powershell)
+
+Subcommands provided by plugins:
+
+Other Commands:
+  api-resources   Print the supported API resources on the server
+  api-versions    Print the supported API versions on the server, in the form of "group/version"
+  config          Modify kubeconfig files
+  plugin          Provides utilities for interacting with plugins
+  version         Print the client and server version information
+
+------------------
+
+K8s $ kubectl get namespaces
+NAME              STATUS   AGE
+default           Active   33m
+kube-node-lease   Active   33m
+kube-public       Active   33m
+kube-system       Active   33m
+K8s $
+K8s $ kubectl get ns
+NAME              STATUS   AGE
+default           Active   41m
+kube-node-lease   Active   41m
+kube-public       Active   41m
+kube-system       Active   41m
+myprod            Active   11s
+
+K8s $ kubectl get ns
+NAME              STATUS   AGE
+default           Active   42m
+kube-node-lease   Active   42m
+kube-public       Active   42m
+kube-system       Active   42m
+myprod            Active   89s
+mytest            Active   14s
+K8s $
+
+
+what is namespaces ?
+
+
+Create a NS 
+-------------------
+
+vi mynamespace.yaml
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: myprod-ns
+
+-------------------------------
+Create POD 
+--------------------
+
+
+vi nginx-pod.yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+  labels:
+    app: nginx
+spec:
+  containers:
+  - name: nginx-container
+    image: nginx:latest
+    ports:
+    - containerPort: 80
+
+
+vi nginx-replicaset.yaml
+
+# nginx-replicaset.yaml
+
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx-replicaset
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+
+
+vi nginx-deployment.yaml
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+
+================================================
+
+# nginx-deployment.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            memory: "256Mi"   # Maximum memory the container can use
+            cpu: "200m"        # Maximum CPU usage (milliCPU units)
+          requests:
+            memory: "128Mi"   # Initial memory request
+            cpu: "100m"        # Initial CPU request
+====================================================
+
+Rolling update example:
+============================
+
+vi myNginx.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+
+kubectl apply -f myNginx.yaml
+
+
+8 pods running 
+ \_ Running Nginx 1.14.2 version image
+
+root@K8S:~# kubectl get deployments.apps
+NAME               READY   UP-TO-DATE   AVAILABLE   AGE
+nginx-deployment   8/8     8            8           45s
+root@K8S:~#
+
+
+
+
+Updating a Deployment
+------------------------
+new Image version : 1.16.1
+
+#1: 
+using kubectl command 
+
+kubectl set image deployment/nginx-deployment nginx=nginx:1.16.1
+
+
+ kubectl apply -f myNginx.yaml
+ kubectl get pod
+ kubectl get deployments.apps
+ kubectl describe deployments.apps nginx-deployment|more
+ kubectl set image deployment/nginx-deployment nginx=nginx:1.16.1
+
+
+ ----------------> Updation  is done  <<<<---------------
+
+ kubectl get pod
+ kubectl describe deployments.apps nginx-deployment|more
+
+To see the status of the deployment:
+ kubectl rollout status deployment/nginx-deployment
+
+ kubectl get rs
+
+To see all the status of the deployment:
+ kubectl rollout history deployment/nginx-deployment
+
+To see the detail of one of the history:
+ kubectl rollout history deployment/nginx-deployment --revision=2
+ kubectl rollout history deployment/nginx-deployment --revision=1
+
+To rollback:
+ kubectl rollout undo deployment/nginx-deployment
+ kubectl rollout history deployment/nginx-deployment
+ kubectl rollout history deployment/nginx-deployment --revision=3
+ kubectl describe deployments.apps nginx-deployment|more
+
+
+======================================
+
+Newtowrking in K8s:
+=======================
+
+1: Create a deplyment
+
+vi nginx-deployment
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+
+vi svc.yaml
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  type: ClusterIP
+  selector:
+    app: nginx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+=======================
+
+NodePort Service
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+
+vi nginx-nodeport-service.yaml
+
+
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-nodeport-service
+spec:
+  selector:
+    app: nginx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30000  
+  type: NodePort
+
+
+# You can choose any valid port number within the range 30000-32767
+
+
+------------------------------------
+https://docs.aws.amazon.com/eks/latest/userguide/setting-up.html
+https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-kubectl-binary-with-curl-on-linux
+https://eksctl.io/#
+https://eksctl.io/installation/
+
+
+EKS CLuster 
+=============
+
+1: AWS cli install.
+
+2: Setup kubectl: a. Download kubectl version 1.21
+curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.21.2/2021-07-05/bin/linux/amd64/kubectl
+chmod +x ./kubectl
+mv ./kubectl /usr/local/bin
+
+EKS $ kubectl version --short --client
+Client Version: v1.21.2-13+d2965f0db10712
+
+
+3:Setup eksctl: a. Download and extract the latest release
+curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+sudo mv /tmp/eksctl /usr/local/bin
+
+
+eksctl create cluster --name cluster-name \
+--region region-name \
+--node-type instance-type \
+--nodes-min 2 \
+--nodes-max 2 \
+--zones <AZ-1>,<AZ-2>
+
+eksctl create cluster --name my-cluster --region ap-south-1 --node-type t2.small
+----------------------------------------------------------------------------------
+
+
+
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.5.4/docs/examples/2048/2048_full.yaml
+
+vi myapp.yaml
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: game-2048
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: game-2048
+  name: deployment-2048
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: app-2048
+  replicas: 5
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: app-2048
+    spec:
+      containers:
+      - image: public.ecr.aws/l6m2t8p7/docker-2048:latest
+        imagePullPolicy: Always
+        name: app-2048
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: game-2048
+  name: service-2048
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+  type: NodePort
+  selector:
+    app.kubernetes.io/name: app-2048
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: game-2048
+  name: ingress-2048
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+spec:
+  ingressClassName: alb
+  rules:
+    - http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: service-2048
+              port:
+                number: 80
+============================================================
+
+
+kubectl create namespace nlb-sample-app
+
+vi sample-deployment.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nlb-sample-app
+  namespace: nlb-sample-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: public.ecr.aws/nginx/nginx:1.23
+          ports:
+            - name: tcp
+              containerPort: 80
+
+
+kubectl apply -f sample-deployment.yaml
+
+
+vi sample-service.yaml
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: nlb-sample-service
+  namespace: nlb-sample-app
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: external
+    service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
+    service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+  type: LoadBalancer
+  selector:
+    app: nginx
+
+console ----->  Create Inastane ----> API ----> Endpoit API  ---> 
+
+kubectl apply -f sample-service.yaml
+
+
+===================================================================
+
+Kubernetes Installation
+=======================
+
+Ref: 
+https://kubernetes.io/
+https://labs.play-with-k8s.com/
+https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
+https://projectcalico.docs.tigera.io/getting-started/kubernetes/self-managed-onprem/onpremises
+
+
+AMZON LINUX -----> CentOS based
+
+1: Master Node 172.31.47.223   43.205.110.93
+2: Worker node 172.31.47.46    52.66.119.59
+
+
+
+This is the installation step using KUBEADM
+==============================================
+
+
+Step# 1: Install docker on BOTH  master and worker node
+
+sudo yum update
+sudo yum install docker
+sudo systemctl enable docker.service
+sudo systemctl start docker.service
+sudo systemctl start docker.service
+systemctl status docker.service
+
+=======
+Step#2: Run on BOTH MASTER and Worker
+
+cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-\$basearch
+enabled=1
+gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+exclude=kubelet kubeadm kubectl
+EOF
+
+# Set SELinux in permissive mode (effectively disabling it)
+
+sudo setenforce 0
+sudo sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
+
+sudo yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+
+sudo systemctl enable --now kubelet
+
+========
+
+Step#3 : This you have to run on MASTER node ONLY
+
+sudo kubeadm init  --apiserver-advertise-address=172.31.47.223 --pod-network-cidr=192.168.0.0/16 
+
+------------ output ------------
+Your Kubernetes control-plane has initialized successfully!
+
+To start using your cluster, you need to run the following as a regular user:
+
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+
+You should now deploy a pod network to the cluster.
+Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
+  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+Then you can join any number of worker nodes by running the following on each as root:
+
+kubeadm join 172.31.47.223:6443 --token c0k62t.xbw215hw9zwq5tt4 --discovery-token-ca-cert-hash sha256:1a980fea2bb2fc6f3894234ca3effbbb8842461111f57afdc6895f0232a17b93
+
+------------ output Ends------------
+
+Step#4: Install Calico on MASTER ONLY
+
+kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/tigera-operator.yaml
+curl https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/custom-resources.yaml -O
+kubectl create -f custom-resources.yaml
+
+
+-------------
+
+Network CNI 
+
+2 VPC plugins
+Fnallel
+
+VCN plugins and Fnallel
+VPC 
+================
+
+Terrafom:
+
+https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli
+

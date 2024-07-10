@@ -1,0 +1,124 @@
+FSx is Windows file system but FSx Luster is used for Linux. 
+For Fsx we need Directory service - AWS Directory Service - AWS managed Microsoft AD or AWS Cognito User pool. 
+
+---------
+FSx Lab |
+--------- 
+
+your windows server need to be added to the domain 
+			>>>> Create one Directory <<<< Directory Service <<< Create <<< 20-45 mints <<< First 30 days 
+			
+https://aws.amazon.com/directoryservice/pricing/
+
+
+Create a Dedicated SG NFS & ALL TCP 
+
+Create a FSx using above SG (15 - 20 Mints)
+
+you can launch your Windows EC2 instance/s 
+
+Add the server into the domain which you have created above 
+
+Map FSx to the above windows EC2 
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Create a Directory using a Directory Service 
+---------------------------------------------
+We can give our directory DNS name as anything [ex. subhajitcorp.com]
+username for the directory is - Admin 
+PWD - Make a note 
+
+Choose your VPC and subnets 
+Always choose 2 subnets from different AZs better availability. [we can choose one public and one private or both public] 
+
+Create 
+
+wait for 20-45 mints 
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+Create a SG 
+------------- 
+Name - FSx-SG
+Description - FSx-SG
+Inbound rule - ALL TCP - Anywhere
+Inbound rule - NFS - Anywhere
+  
+-------------------------------------------------------------------------------------------------------------------------------------------------
+  
+Create a FSx
+-------------- 
+Amazon FSx for Windows File Server
+Creation Method - Standard create
+
+Name - MyFSx
+
+Deployment type - Multi-AZ 
+Storage type - SSD 
+
+Leave those options as it is 
+
+Choose your VPC 
+
+Choose your SG - FSx- SG 
+
+Preferred Subnet - Public 
+Standby - Private 
+
+Windows authentication >> Choose your Directory
+
+Backup and maintenance >> disable 
+
+Create >>> 15- 20 mints 
+-------------------------------------------------------------------------------------------------------------------------------------------------- 
+ 
+ 
+ Create your First Windows EC2 
+ 
+ Launch and then attach your FSx-SG 
+ 
+ Once you login > This PC > Properties > System Advanced Settings > COmputer Name 
+ 
+ 
+ Then >> RUN >>> ncpa.cpl >> right click >>> Properties >> Choose Internet protocol Version 4 >> Properties
+ 
+ Click on Use the following DNS server address 
+ 
+ Now go to the Directory and copy your first DNS and give it there, then copy your second DNS and also paste 
+ 
+ Close 
+ 
+ After updating DNS, go back to system properties >> change >> choose member of domain >>> give your domain name 
+ 
+ example - maheshcorp.com (its mine)
+ 
+ close and then restart your windows EC2 
+ 
+ 
+ Once you relogin the server try to check if that is added to the domain 
+ 
+ 
+ Now go to the FSx copy your File share and go to the PC >> paste and it will ask you to give your user name and pwd 
+ 
+ Create a Folder and subfolder and then a notepad inside 
+ 
+ This PC > right click > map drive > give the share > different credentials > finish 
+ 
+ you can see that share is mapped 
+ 
+ 
+ 
+ once you are done with this, terminate the windows Ec2
+ 
+ Launch a fresh windows EC2 
+ 
+ add the server to the domain 
+ 
+ restart 
+ 
+ access the file system 
+ 
+ whichever Folder and subfolder and then a notepad inside created they will be visible in this branch new windows EC2 
+ 
+ hence proved its a common storage, central repo, shared storage 

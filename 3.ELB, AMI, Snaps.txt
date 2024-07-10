@@ -1,0 +1,79 @@
+- lsblk ---> to check the available mounts inside the linux machine
+- df -h ---> to check the avialable volumes
+
+>> Add a new volume to the instance
+-----------------------------------
+ - Go to ebs and create a new volume and give the desired space
+ - After the creation go to action and choose attach volume to the required EC2 instance
+ - Even after attaching the volume it will not show inside the instance, so we need to provision it.
+ - We can see that volume inside the block device with lsblk but until we provision it we will not be able to use it.
+ - Create a new directory where you will mount the volume
+ - sudo mount /dev/xvdf /<destination> ---> this will mount the volume and ready to use
+-> Add the volume to /etc/fstab ----> to auto mount everytime the system restart
+ 
+
+>> BACK UP
+-----------
+ - EC2 level back up is technically called as AMI Backup
+ - Volume level backup is called as snapshot backup -----> These snaps can be directly deleted
+
+-> AMI back up ----> One AMI along with all the EBS Snapshots ---> These EBS snaps can not be directly deleted coz they are virtually conneced to AMI
+ - To take an AMI ---> go to options in ec2 and create Image 
+ - When taking a AMI level backup there will be ***Default reboot*** 
+-> We can also check the no reboot to avoid rebooting the server while taking AMI level backup.
+ - If AMI process is going on without reboot then it will be delay as well as the processes running in the instances.  
+ - While taking AMI we can customize which volume we want to attach ---- but we can not remove the root volume no matter what.
+ - Delete on Temination --> This the option that lets AWS automatically delte the volume on Instance termination. 
+-> AMI and snapshots can be made public and can also be shared with other accounts. 
+ - Marketplace AMI is already setup and we are paying to use it. It has all the configurations and dependencies installed so we dont have to work on them.
+-> Golden Image - Create an AMI after all the configurations done in a instance and use it to create multiple instances.
+-> Size of a volume can only be increased. While resizing an EBS volume we can not decrease the size.
+-> AMIs are stored in the S3 bucket of the same region.
+ - We can copy AMI from one region to another region ---> In AMI go to action ---> choose destination region and copy AMI.
+ - We can share the AMI with other account by ----> action -----> edit permissions ---> private AMI ---> give the account no in shared account.
+ - We can also make our AMI either private or public in action ---> edit permissions
+ 
+ 
+ 
+------------------- 
+Lifecycle manager |
+-------------------
+ - Using this AWS service we can create, retain, delete out snapsshots automatically. 
+ - We have the option to create Instance level AMI or only EBS level snaps. 
+ - We can define the creation time for our snaps, as well as the retain date for those snaps. 
+ - We can give it a IAM role also. [either default or new role]
+ - We can enable to disable our role. 
+ - We can coose when can we create our snaps [daily, weekly, monthly or yearly] along with the time of creation of snap.
+ - We can also choose how long we can retain the snaps. 
+ - We can lastly create the policy.
+-> One policy can be created for one perpose only. 
+-> Go to the policy and in the bottom choose [not enable] which will then disable the policy. 
+-> Even if you disable the policy the backup data or created snaps will still be retained until their expire date. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

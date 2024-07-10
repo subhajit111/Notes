@@ -1,0 +1,158 @@
+------
+EC2- |
+------
+ - Elastic compute cloude.
+ - Used to create instances which are VM wares. 
+ - EC2 is a regional service. 
+-> Use EC2 global view on top of EC2 homepage for a detailed view of all your resources in all the regions. [vpc, endponts, instance, SG etc]
+-> In one region and under one VPC we can lunch 1000 ec2. More than that will charge you heavly. This is a softlimit from amazon.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+Types of Instances:  https://aws.amazon.com/ec2/instance-types/?trk=32f4fbd0-ffda-4695-a60c-8857fab7d0dd&sc_channel=ps&ef_id=EAIaIQobChMIkaiP1r-vggMV9yODAx14vgU5EAAYASABEgKA4vD_BwE:G:s&s_kwcid=AL!4422!3!536392685920!e!!g!!amazon%20ec2%20instance%20types!11539707735!118057054048
+---------------------------------------------------------------------------------------------------------------------------------------------------
+ General-Purpose Instances
+ Compute-Optimized Instances
+ Memory-Optimized Instances
+ Storage Optimized Instances
+ Accelerated Computing Instances
+
+-> In order to create EC2 instance VPC with atleast one subnet is mandatory.
+ - Must have permission for the user to create instances
+ - By giving the private IP of a client instance inside of a public instance we dont have to worry about the public IP getting chnaged and will have specific access.
+ - By creating an instance inside a public subnet, we can use it as jump server. [jump server - use this to connect to other instances inside the private servers inside that VPC]
+-> If we have missed assigning a Public Ip while creating the Instance we can use a Elastic Ip afterwards for the connection.
+ - Elastic Ip is chargable so delete it after the use.
+-> After you change the password of your user and enable "passwordless authetication = yes" then you can login to you accont without private keypair.
+-> To login using password ---> ssh ec2-user@<public_IP> ---> give user password when asked.
+-> To change the instance type of a running server -- we have to first stop the server --> which leads to downtime ---> requires approval from the owner
+- Depending upon how many IPs the subnet have you can only lunch that much instance under that subnet. 
+- RDP(3389)----> for windows, ssh(22)----> for Linux
+- RDP pre installed in windows and mobaxtream or putty for linux
+
+--------
+KeyPair:
+--------
+-> When we try to ssh within a instance make sure the key_pair file has right permissions ---> ls -la ----> chmod 400 <key_pair.pem>
+-> Key_pair file should alz have read only permission.    r-- --- --- >> 400 000 000 >>> r = 4, w = 2, x = 1
+-> Key pair is a encrypted file where our password is stored and we use this along with the username to login.
+-> Keyparir is a regional and can only be used only the created region only.
+- We can delete existing keypairs by going to ec2 ---> keypair ---> choose keypair ---> delete
+ 
+
+
+--------------------
+Security Groups[SG] :
+--------------------
+- SG works as a instance level gatekeeper.
+- It checks the inbound and outbound traffic as specified inside it.
+- After creating an instance alz check the SG or choose the SG with the right permissions.
+
+---------------
+IP of instance:
+---------------
+Private IP - Used for internal communication. 
+		   - This IP will be coming form our subnet CIDR range excluding first 4 and last1 IP.
+	       - Does not charge any money
+
+Public IP  - For External communication.
+	       - This IP comes from the Amazon open IP pool.
+	       - This IP will change when you stop the EC2 instance. Change means it will be released and a new IP will be allocated to you instance. 
+          -> public IP will not change when you restart the instance.
+	       - Does not cost any money
+
+Elastic IP - This IP also used for External communication.
+		   - This IP also comes from the Amazon open IP pool.
+	       - This IP is permanet will be allocated to your resource if you choose to attach one.
+	       - It will not change when ever you restart or stop your instance.
+	       - Costs money only if the IP is ideal. If it is attached to a running resource then it will be free.
+          -> If the attached resource is stoped and the EIP is ideal then it will start charing money.
+
+
+----------------------
+EC2-LAB-WINDOWS/LINUX:
+----------------------
+ - To log into you windows lab first make sure to enable RDP port inside the SG.
+ - To get the username and password ---> connect ----> RDP client ----> get password ---> upload the private keypair and decrypt. 
+ - User name should be administrator and password will be given after decryption.
+ - Type Remote Desktop Protocol in windows and give the credentials.
+
+
+>> For Linux password login instead of keyparir:
+------------------------------------------------
+ - Log in to the instance and go to root user and change the ec2-user password
+ - sudo su ---> ec2-user passwd ---> give new password
+ - got to /etc/ssh/sshd_config ---> Enable passwordAuthentication yes
+ - sudo systemctl restart sshd
+ - Go to console --> ssh ec2-user@<ip> ---> password when asked
+-> TO give user full access type ---> visudo, under root ---> <username> ALL=(ALL) NOPASSWD:ALL
+   CTRL + O ---> Enter ----> CTRL + X
+
+
+>> Changing windows password after login and adding user:
+---------------------------------------------------------
+ - Log into the windows instance ---> RDP ---> username and password from EC2 console
+ - Go to computer management ----> Local user and groups ----> Users ---> Choose user name like "Administrator" ---> right click and set password
+ - Login again using RDP but this time use the new password
+ - To add one more user ---> right click on users and add new.
+ - Go to groups ---> choose the group and give the new user name and search it ---> Apply then ok so that the new user is added to the group
+ 
+
+------------------------------------
+Cross EC2 access public to private  |
+------------------------------------
+- If our ec2 or other resources are inside a private subnet we cant directly connect to the using internet.
+- To connect to out private resoueces we have multiple methods: 
+	- Direct connect ----> Only for huge amount of data migration from onpremises to cloud. 
+	- Jump Server or bastion host [here one instace will be in public subnet and inside thise we will be able to access other private resoueces in that VPC]
+	- VPN [ex. OpenVPN - This will cost money] ---> ex. OpenVPN in marketplace AMI.
+
+---------
+VPN Lab	|
+---------
+- To use VPN for EC2 login we will use marketplace VPN called oepnvpn ----> openvpnas [username - mobaxterm]
+-> We will always install the vpn inside the public instance. 
+- Once vpn is installed we have to install the client VPN inside our laptop. 
+- When creating an instance from Marketplace AMI, it will automatically create a SG with all the ports required for instace.
+- When asked for the option always choose privateIP while configuring the instace. 
+- Algorithm --- RSA 
+- Setup so that traffice should be allowed to public VPN even though VPN is not enabled but [without VPN only access public subnet]
+- Private server access should only be allowed within vpn. 
+- Setup password for VPN when asked. 
+- After setup you will be given Admin and client UI urls. Go to admin ui url to see all the users and status. [User name - OpenVPN]
+- Go to client UI url to download the VPN software.  [username - openvpn]
+- Once VPN is active you can access to the private resources through mobaxterm or other things.
+
+
+------------------
+Placement Groups |
+------------------
+- When creating multiple instace or resoueces they might be created in different AZs. And some latency might occure.
+- To solve this issue AWS has given a service called Placement Groups.
+- It allows us to keep all the servers in one place.
+
+TYPES: 
+	- Cluster : All servers are with in a single AZ and created under one hardware
+	
+	- Partition : One AZ but the hardware may be different
+	
+	- Spread: One AZ but all the servers are in different hardware
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

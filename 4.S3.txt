@@ -1,0 +1,129 @@
+- S3 is a global service
+- S3 is object based storage service
+- Is is mainly used for storage, backup, restore and archival solution. 
+
+
+- S3 ----------> global   --------> because the data is availabe across the globe
+- S3 bucket ---> Regional --------> data is stored a bucket in a region which is good for DR and restore. 
+
+>> storing in a region ----> accessing it globally [the concept of global and  regional]
+
+-- when we want to store data we must store it inside a bucket as object and since we are using bucket it will be stored inside a region only. 
+>> Using bucket as regional is good coz when we search for a file we will only serach in a region rether that entire globe. This helps to restore and recover the data much faster. 
+-- S3 bucket name should be unique. [Like gmail. It should be unique across the globe]
+
+>> We can user s3 as a backup for ----> Our AWS account / Other AWS account / Other cloud platforms / Onpremises
+>> We can store any form of data into s3 bucket BUT s3 will consider them as an object [structred or unstructred data or any format of data]
+    
+- Objects stored in bucket will have a object URl and can only be accessed based on their permissions. 
+- By default all the permissions for the bucket and object will be blocked. You can diable it by editing the bucker policy. 
+- To allow others to access the object inside bucket you have to give the OBJECT public access. 
+
+>> Bucket permission --> By deatult not allowed ---> Edit in the setting to remove the block. 
+
+>> Object permission --> To allow access ----> Go to objecct ---> Permissions ----> Bucket owner enforced ----> ACLs Enable 
+					 --> Go to permission ---> Edit ACLs ----> You can now give read / write access as per your need. 
+
+---------			 
+VERSION	|				 
+---------
+- If you upload the same file twice it will be overwritten. To overcome this we have versioning in S3.
+- To enable bucket versioning ----> Go to bucket properties ---> Enable bucket versioning
+- To see the versios of a file inside the bucket click on show versions. 
+>> After versioning is enabled objects will have versions, but the older objects will not have versioning.
+
+>> Benifit of bucket versioning is we can take daily backup of our data centers. It will not be deleted and will be updated and stored one top of another. 
+
+-----------------
+Storage Classes |
+-----------------
+- Amazon S3 offers a range of storage classes that you can choose from based on the performance, data access, resiliency, and cost requirements of your workloads. 
+- https://aws.amazon.com/s3/storage-classes/
+
+- While storing our data or updating our data we can choose the storage class under properties. 
+- By default AWS stores data under s3 standard class. 
+
+
+---------------------------
+Lifecycle Management Rule |
+---------------------------
+-> This is chargeble.
+
+- It helps us to store our data under a specific storeage class automatically. 
+- We can choose which objects to be stored under which class. 
+- We can specify under how many daya a object is going to move to which class. 
+- We can set multiple transition which will apply to the objects from going to one storage class to another after a certain period of time. 
+
+
+------------------
+Replication Rule |
+------------------
+- Tis is chargeable
+
+- This helps us to replicate or copy one bucket's data into another bucker.
+- The buckcet can also be in another region or account. 
+- We can either enable to disable it as per our need. 
+- Make sure to enable the versioning.
+- There will alz be a delay for the objects to be availabe in the destination bucket. 
+
+
+------------------------
+Static website Hosting |
+------------------------
+- Static website ----> one page for everyone which doesnot depends on the backend code or server. 
+- Dynamid website ---> the has login pages, databases and other apis. We call that as dynamic website
+				  ---> content will be differnt as per the user. Like Netflix
+
+- For static website hosting we need index.html and error.html [not mandatory] in the bucket. 
+- Go to properties and in the bottom we can enable static website hosting ----> Enable ----> Give index.html and error.html and save changes. 
+- Make sure to enable the access for the objects. Bucketaccess and ACLS. After ACLS is enables make your objects public. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
