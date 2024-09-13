@@ -1,0 +1,2683 @@
+1 - 
+
+Zoom 
+
+Laptop/Computer
+
+Stopped working 
+
+not booting up 
+
+Service Center 
+
+2hr or 2 days >>>> SLA 
+
+I'm effected -  I cant able to join the class 
+
+***************************************************************
+
+2 - 
+
+ecomm
+Netbanking 
+Netflix 
+
+Many servers >>>> one Building >>> physical Datacenter >>> Server room 
+
+Fix it by myself 
+
+Service Center >>> 2hr or 2 days >>>>> SLA 
+
+Many users are effected across the globe 
+
+****************************************************************
+
+Depending on Service center (Lenovo, Dell, HP, etc)
+
+****************************************************************
+
+Technology >>>>> Cloud Computing 
+
+Stop purchasing/buying 
+
+Take it on Rent and pay as you use/go 
+
+Cloud Datacenter 
+
+
+Cloud Providers >>>>>>> AWS, GCP, Azure, Oracle, IBM etc 
+
+
+Android >>> samsung, OnePlus, Oppo, etc 
+IoS >>>  Apple 
+
+
+
+ZERO upfront investment 
+
+
+aws.amazon.com 
+
+Auto Scaling >>> 2 >>
+								8 >>
+								9 >> 
+								1 >> 
+
+
+*****************************************************
+
+- Decoration team 
+- Catering 
+- activities 
+
+
+Software as a Service (SaaS) >>>  
+Infrastructure as a Service (IaaS)
+Platform as a Service (PaaS)
+
+ 
+
+Amazon >>> NO >>>> eComm 
+AWS >>>> YES >>> Cloud Computing
+
+
+
+aws.amazon.com 
+
+pre-req 
+1 - email address 
+2 - Credit or debit card 
+
+12 Months Free Tier 
+Conditions Apply 
+
+Done Module 1 - 34 slides
+
+
+
+16.09.2023
+
+- Regions Vs Availability zones 
+- Quick Tour of AWS Services, components 
+- Module 2 
+
+
+
+Region - USA, Europe, Asia 
+Region Code - US- WEST-01, EU-EST-02, etc
+
+Collection of Amazons Physical Datacenter (Availability Zone)
+
+Min 2 AZ in Regions 
+
+HA & FT 
+
+
+whatever AZ are with in Region they are inter connected 
+
+
+Lab 1 - 
+VPC >>> Cloud based datacenter which is owning by "YOU"
+
+VPC is a Regional Service 
+
+Before going to launch many services VPC is mandatory****
+
+Maximum you can create 5 VPC per region as a soft limit 
+
+Custom - VPC - pre-req
+1 -Region >>> Location >>>>  Sydney 
+2 - Size >>>>> Resources >>>>> 200 (Ec2, RDS, EFS, Network Interfaces, etc)
+
+
+IP Address - X.X.X.X
+
+ipconfig 
+
+CIDR - X.X.X.X "/X"
+
+VPC >>> Sydney >>> X.X.X.X/X
+
+
+16 
+18
+20
+22
+24
+26
+28
+
+
+VPC Name and CIDR >>> Create VPC >>>> 4 default subcomponents are creating automatically 
+Default SG
+Main RT
+Main NACL
+DHCP Options set 
+
+
+Lab 
+
+Choose TWO different regions 
+
+Create one VPC per region
+
+VPC 1 - 10.0.0.0/26
+VPC2 - 10.0.0.0/24
+
+Verify what default subcomponents are created along
+
+
+
+
+
+17.09.2023
+
+Chose a Fresh Region 
+
+Create a VPC with CIDR - 10.0.0.0/28
+
+Verify what are the default resources are created 
+
+Try to launch a EC2 using the same VPC above? will that be possible to launch or not? 
+
+
+Again, Try to lunch a EC2 using the default VPC and see if you can able to launch it not? 
+
+
+What we learn???
+
+
+10.0.0.0/24
+
+Formula - 2 ^ (32-??) = 2 ^ ?? = ??? 
+
+2 ^ (32-24) = 2 ^ 8 = 256
+
+ 10.0.0.0/28
+ 
+ 2 ^ (32-28) = 2 ^ 4 = 16
+ 
+  10.0.0.0/16
+  
+  2 ^ (32-16) = 2 ^ 16 = 65536 
+  
+  
+  
+ 10.0.0.0/24
+
+Formula - 2 ^ (32-??) = 2 ^ ?? = ??? 
+
+2 ^ (32-24) = 2 ^ 8 = 256
+
+10.0.0.0
+10.0.0.1
+10.0.0.2
+10.0.0.3
+10.0.0.4
+10.0.0.5
+-
+-
+-
+10.0.0.62
+10.0.0.63 >>>> Subnet 1 
+-
+-
+-
+10.0.0.250
+10.0.0.251
+10.0.0.252
+10.0.0.253
+10.0.0.254
+10.0.0.255
+
+
+VPC - 256 IPs >>>> https://cidr.xyz/  >>> 10.0.0.0/24>> 256 
+
+Subnet 1a >>> 10.0.0.0/26 >>> 64 >>>>> 5 IPs will be occupying by AZ >>> First 4 and Last one will be occupying by AZ 
+Subnet 2b >>> 10.0.0.64/26 >>> 64  >>>>> 5 IPs will be occupying by AZ >>> First 4 and Last one will be occupying by AZ 
+Subnet 3c >>> 10.0.0.128/26 >>> 64  >>>>> 5 IPs will be occupying by AZ >>> First 4 and Last one will be occupying by AZ 
+Subnet 4a >>> 10.0.0.192/26 >>> 64  >>>>> 5 IPs will be occupying by AZ >>> First 4 and Last one will be occupying by AZ 
+
+1 - No mandatory**** to choose equal Subnets 
+2 - No mandatory**** to create or utilize all the CIDR or Subnet in one GO 
+3 - All the 64 IPs are not usable 
+
+
+
+256/4 = 64 
+
+
+CIDR Block - /16 to /28 
+
+
+
+1- 10 
+
+1 - 5 >> Team A 
+6 - 8 >> Team B
+9 - 10 >> Team C  
+
+
+VPC - 10.0.0.0/24 >>> 256 IPS reserved 
+
+Subnet 1 - 10.0.0.0/24  
+
+Min 2 Subnets are "recommend" for each VPC >>> HA 
+Min 1 Subnet is "Mandatory" for each VPC 
+
+
+* you cant create one subnet in more than one AZ 
+* you can create more than one subnet in a same AZ 
+
+
+
+Subnet LAB 
+
+VPC - 1 - 10.0.0.0/24
+Create 4 equal Subnets in a Region - A 
+
+- Rename Main RT as Public RT and Create one new RT and name it as Private RT 
+- Create IGW and attach to the VPC 
+- Add this RT as a route entry at the Public RT 
+- Go to the Public RT at Subnet Association 
+- Edit - choose any ONE subnet and save 
+- Go to that Subnet add a tag as Public
+- Go to the Private RT at the subnet association 
+- Edit - choose rest all the subnets and save 
+
+VPC - 2 - 10.0.0.0/24
+Create 4 equal Subnets in a Region - A (Repeat)
+
+what is your learning? 
+
+- Rename Main RT as Public RT and Create one new RT and name it as Private RT 
+- Create IGW and attach to the VPC 
+- Add this RT as a route entry at the Public RT 
+- Go to the Public RT at Subnet Association 
+- Edit - choose any ONE subnet and save 
+- Go to that Subnet add a tag as Public
+- Go to the Private RT at the subnet association 
+- Edit - choose rest all the subnets and save 
+
+
+Go to different Region 
+VPC - 3 - 10.0.0.0/24
+Create two SAME Subnet Sizes 
+Delete the 2 Subnet 
+Create two another equal subnets 
+All together -there will be 3 subnets in this region 
+
+- Rename Main RT as Public RT and Create one new RT and name it as Private RT 
+- Create IGW and attach to the VPC 
+- Add this RT as a route entry at the Public RT 
+- Go to the Public RT at Subnet Association 
+- Edit - choose any ONE subnet and save 
+- Go to that Subnet add a tag as Public
+- Go to the Private RT at the subnet association 
+- Edit - choose rest all the subnets and save 
+
+
+VPC - 4 - 10.0.0.0/26
+Divide into 4 equal CIDR 
+but 
+Create first Subnet range and last subnet range 
+leave 2 & 3 range empty without any subnet for further use ? 
+
+what is your learning? 
+
+- Rename Main RT as Public RT and Create one new RT and name it as Private RT 
+- Create IGW and attach to the VPC 
+- Add this RT as a route entry at the Public RT 
+- Go to the Public RT at Subnet Association 
+- Edit - choose any ONE subnet and save 
+- Go to that Subnet add a tag as Public
+- Go to the Private RT at the subnet association 
+- Edit - choose rest all the subnets and save 
+
+
+VPC 
+
+
+23.09.2023
+Route Table
+IGW GW 
+NAT Gateway
+Secondary CIDR 
+
+Default VPC Vs Custom VPC 
+
+etc 
+
+
+All the subnets are created as private by default **** 
+
+
+********
+Application servers 
+Web Servers 
+Database servers 
+Jump or non-critical servers or Bastion host or sandbox 
+etc 
+etc 
+
+
+Route Table 
+
+
+Intercomm >>>> Private RT >>> create one and name it 
+Mobile >>> Public RT >>>> Main RT which is automatically created
+
+
+YELLOW >>> Internal Communication >>>> Printing or sharing between the company or that cafe 
+RED >>>> External Communication 
+
+
+IGW >> Internet Gateway 
+
+
+
+
+
+
+
+Summery 
+- VPC Created 
+- 4 Subnets created 
+- One Main RT called as a Public RT 
+- One new RT created and named it as a Private RT 
+- IGW created and attached to VPC 
+- Add this RT as a route entry at the Public RT 
+- Go to the Public RT at Subnet Association 
+- Edit - choose any ONE subnet and save 
+- Go to that Subnet add a tag as Public
+- Go to the Private RT at the subnet association 
+- Edit - choose rest all the subnets and save 
+- Create a NAT GW (Whenever you create it one EIP will be creating automatically)
+- Attach it to Public Subnet 
+- Do the route entry at Private RT 
+
+
+
+VPC 
+Subnet - sub+net 
+RT 
+IGW 
+NACL
+SG 
+DHCP Optionset 
+NAT Gateway >>>>> $0.004 per hour 
+
+
+
+
+24.09.2023
+
+1 solution for Realtime >>>> VPC and More 
+another solution for testing >>>> Default VPC 
+
+
+NAT Vs IGW 
+
+SG Vs NACL 
+
+Custom VPC (5 Soft limit) Vs Default VPC (1 per region)
+
+
+Deep-Dive Default VPC 
+
+
+Private IP Vs Public IP Vs EIP 
+
+Intro EC2 
+
+
+
+Short name (Nick Name) - my friends and family >>>> Internal or close contacts >>>>> Private IP >>>>> Within VPC or Internal Communication <<<<<<< Subnet CIDR Range by excluding first 4 and last 1
+Mobile number - Many, official communication, marketing etc >>> External communication >> Change it >>>> Mobile Providers >>> Public IP >>> Change - Stop/Start but not restart
+Aadhar, PAN - very secured, will be given to authorized >>> Cant change >>> EIP >>> Persistent IP or Static IP 
+
+
+Private IP >>> Subnet CIDR Range >>>> internal communication >>> Free of cost
+Public IP >>>> Amazon Open IP Pool >>>> external communication >>> Free of cost
+EIP >>>> Amazon Open IP Pool >>>> external communication >>> Chargeable if your server is stopped or your EIP is ideal (not using)
+
+
+
+
+
+
+
+Lab - EC2 
+
+
+VPC Troubleshooting or workshop 
+
+
+
+OS >>> 
+RAM/CPU >>> 
+HDD >>> 
+Security >>>
+Username & PWD >>> 
+etc 
+
+
+
+Rent >>>> pay as you go 
+AWS ** 
+AMI >>> 
+Instance Type >>> 
+EBS >>> 
+SG 
+username & Keypair >>>  Administrator & 
+etc
+
+
+pre-req
+1 - VPC with at least one Subnet and other subcomponents 
+2 - you should have free(available) IPs in Subnets
+3 - you should have enough permissions to launch EC2 
+
+
+Launch a EC2 with Windows OS 
+Choose T2.micros
+Choose your VPC with public Subnet 
+enable Public IP 
+choose SG - with anywhere target 
+choose EBS - 30 GB 
+create a Keypair
+
+Launch Instance
+
+Try to connect that instance by using user name and PWD 
+
+
+
+
+IMP** 
+EC2 Troubleshooting
+- Check the EC2 status 
+- Check the SG 
+- Check the EC2 - Subnet 
+- Check the Subnet - RT 
+- Check the RT - IGW entry 
+
+
+
+
+30.09.2023
+
+Windows EC2 - Summery 
+
+?YCsBv5qBTFdCuwhVCszUMCMjT3;U7l8
+
+
+
+
+
+
+Linux EC2 - Play around
+
+Windows EC2 Vs Linux EC2 
+
+How to upgrade Instance Type 
+How to upgrade EBS volume 
+How to take the complete EC2 backup
+How to take the EBS volume backup 
+How can I restore EC2 backup and volume backup 
+Play around with SG 
+Play around with Public IP & EIP 
+Play around with custom User name and PWD 
+EBS volume types 
+
+EC2 savings plan 
+
+Use Jump Server 
+
+Connect using VPN 
+
+Userdata 
+
+ 
+etc 
+
+
+
+Lab 
+
+1 - Create a new EC2 instance if your old one is terminated
+2 - Make sure you have disabled your public IP while launching 
+3 - Go to the EIP and create and associate with this above EC2 
+4 - Validate that is assocaited as it should 
+5 - Try to check if Private IP is accessible (of course it is not, FYI)
+6 - Now you login the server with the PublicIP (EIP)
+7 - go to the computer management 
+8 - Choose users and groups 
+9 - go to users 
+10 - Right click Administrator and set PWD 
+11 - give your desired pwd and relogin with that PWD 
+
+
+
+
+A - Go to the CMD and check - whoami
+B - Go to the Taskmanager and check the users 
+C - Go to the Computer Management > Users > New User > User name, Full name and Description and PWD, repeat 
+D - Go to the Groups > Administrator > Give the user name > check > add 
+E - Try to relogin the server with the new username and the PWD 
+F - Validate that is successfully logged in from Taskmanager
+
+
+
+Instance Type upgrade (CPU/RAM)
+a - Get the EC2 downtime/stop approval from the server owner 
+b - Go to the server and STOP it 
+c - Go to Instance Actions > Instance settings > Change instance type 
+d - Choose the instance type you desire (Except t2.micro they will charge, be careful)
+
+
+EBS Volume (Local HDD)
+Windows >>> 30GB root volume >> C:\ 
+new volume and attach to the EC2 >> D:\ 
+a - Volumes under EBS 
+b - Create a Volume and choose size as 1GB and leave all other options as it is 
+c - create the volume and the status will be available 
+d - Choose the volume, Actions > attach volume > choose your EC2 > leave Device name as it is and attach 
+e - go the EC2 instance > Inside windows OS >>>> computer management > disk management > verify if there is any new volume 
+f - if you cant see the volume - Actions > refresh 
+g - Right click > ONLINE 
+h - Right Click > initialize > OK 
+i - Right click on the disk size > follow the screen >> Next >> Next >> OK 
+j - verify if that volume is created and accessible 
+k - Create a sample test file in that drive for testing 
+
+
+
+01.10.2023
+
+
+
+1 - Want to launch a Linux EC2 
+2 - Want to understand Windows EC2 Vs Linux EC2 
+3 - Customize my login to the linux EC2 
+4 - Attach a EBS volume 
+
+
+
+- Windows OS >>>>>> any of the Linux OS 
+- 30GB root volume >>>> 8 or 10 GB 
+- t2micro >>>>> t2micro
+- RDP (3389) >>>> SSH (22)
+- RDP (Pre-installed in windows Machine) >>>>> PuTTY or Mobaxterm
+
+
+
+
+Launch a Linux EC2 
+Choose your AMI 
+your Instance Type 
+your VPC 
+Enable Public IP 
+Choose your SG 
+Launch 
+
+
+
+Internet and download Mobaxterm and start using it 
+https://mobaxterm.mobatek.net/download-home-edition.html
+Choose Portable 
+
+
+Copy your public IP 
+Open Mobaxterm >> Session >> SSH 
+Remote host >> Public IP 
+Check the box and specify the username - ec2-user 
+
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/managing-users.html
+
+Click on Advanced SSH settings 
+check >> user private key button 
+choose that search or notepad button and upload your Keypair and say "OK"
+There we go >> you are inside your LINUX OS ???
+
+
+
+Recap of the windows EC2 
+1 - Connected Windows EC2 using administrator >>>>> Connect using ec2-user
+2 - Used Keypair to decrypt the PWD and logged in >>> Likewise 
+3 - From the computer management I reset the PWD so that Keypair is detached from the server >>>>>> passwd command to reset your pwd 
+4 - I try to login with the new PWD and the administrator it worked >>>> In Linux you need to enable the password authentication 
+5 - Created a new User and set the PWD >>>> useradd 
+6 - Added that user to the Administrator Group >>>>> sshd 
+7 - then only I can able to login with that new user >>>> Likewise
+
+
+
+babu      ALL=(ALL)       NOPASSWD: ALL
+
+
+
+
+
+Volume mount in your existing EC2 instance by following the same instructions 
+
+Terminate if you want 
+
+***** 
+Create a new EC2 (Linux)
+Create a new User 
+Relogin with that new user 
+using this new user again mount the EBS volume 
+
+
+
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/managing-users.html
+https://aws.amazon.com/ec2/instance-types/
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html
+https://aws.amazon.com/savingsplans/compute-pricing/
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-purchasing-options.html
+
+
+
+
+7.10.2023
+
+1 - EC2 Level Backup Vs EBS Level Backup 
+2 - Restore 
+3 - Cross EC2 access (Public to Private)
+4 - Userdata 
+5 - VPN 
+6 - SG Vs NACL 
+7 - Lifecycle Manager 
+8 - Placement groups 
+9 - etc 
+
+
+
+10 - ASG 
+11 - ELB 
+
+
+Laptop >>> C:\ (250GiB) & D:\ (500 GiB) & E:\ (1000 GiB) & F:\ (1 GiB)
+
+1 - O/S Update or Upgrade or I'm giving my laptop to service center (Maintenance)  >>>> Complete Laptop Backup >>>> 1750 GiB >>>> 2 TB External HDD 
+
+2 - Documents or Files Backup >>>>> Drive level (Volume Level Backup) >>>> F:\ >>>>>> 1GiB >>>>> 1 GiB Pendrive 
+
+
+
+EC2 level Backup  >>>>> Create Image >>>> AMI Backup  >>> 1 AMI along with all the EBS Snapshots >>> These EBS Snapshots cant be deleted because they are virtually connected with your AMI 
+***** Default reboot 
+But if your Ec2 is 24*7 operational hours >>>> 
+
+
+Volume Level Backup >>>>> EBS Snapshot Backup >>> Can be directly deleted 
+
+
+
+
+AMI Lab
+
+1 - Create a EC2 instance if not already existed 
+2 - Create a AMI and validate how many snapshots and AMI 
+3 - Attach 1 GB Volume and create one more AMI 
+4 - Validate how many Snapshots & AMI 
+
+
+to be continued ......
+
+
+AMI 
+
+1 >>>> Normal OS selection
+2 >>>> Marketplace AMI 
+3 >>>> Backup solution 
+4 >>>> Golden Image 
+
+
+Normal AMI >>> Create your users >> Install Patches >>> Enable environment variable >>> Install application >>> Post configuration >>> Enable keys >> etc  >> 2 hours or 2 days 
+
+50 Ec2 - requirement 
+
+50 ec2 * 2 hours >>> 100 hours >>>> 3 hours approx 
+
+- Create EC2 
+- do all the above configurations 
+- create a AMI (Golden Image)
+- launch remaining 49 ec2 instances using this AMI 
+
+
+
+Backup & Restore &&&& Golden Image Lab 
+
+1 - Create a Fresh Linux EC2 instance 
+2 - while creating this EC2 instance update userdata
+3 - Test what is that userdata doing inside that instance and its outcome 
+4 - create a AMI 
+5 - Launch a One more EC2 with the above AMI 
+6 - Test it if still your website is up or not?????
+
+
+
+userdata 
+
+#!/bin/bash
+
+yum install httpd -y
+
+systemctl enable httpd
+
+mkdir /var/www/html/mylab/
+
+echo "<h1>This is my own Website for intellipaat</h1>" > var/www/html/mylab/index.html
+
+systemctl start httpd
+
+
+
+
+
+ 
+14.10.2023
+
+Copy AMI from one region to another >>>> ???? 
+I want to migrate my EC2 instance from one Region to Another region >>>> ??? 
+I want to give my server to another Account or region? 
+I want to restore my server to another region as a DR? 
+
+
+
+Quick Lab 
+1 - Launch a EC2 instance (your choice of OS)
+2 - Login and create a File or a user 
+3 - Stop the EC2 
+4 - Create a AMI out of it 
+5 - Copy the AMI from the source region to your choice Region 
+6 - go to that region and Launch a new EC2 using this NEW AMI 
+7 - login the EC2 and validate if that is having that file or user 
+8 - hence proved restore, copy and recovery of your EC2 
+
+Please note - choose either Default VPC or custom VPC in the destination region 
+
+
+
+
+EBS snapshot Lab 
+
+1 - cleanup your destination lab above 
+2 - Create a 1GB volume and attach to your source Ec2 created above 
+3 - login the server and place a file inside that volume 
+4 - Create snapshot of this Volume (not the root vol)
+5 - Launch a new EC2 within this region 
+6 - create a vol out of this snapshot
+7 - attach this volume to the new Ec2 
+8 - login and validate 
+
+(Restore - EBS )
+
+
+
+
+
+EBS Level Backup and restore
+
+
+Cross EC2 access (Public to Private)
+
+- whenever your server is in private subnet
+	- Jump server or bastion host 
+	- VPN  >>>> Virtual Private Network >>> software VPN (OpenVPN) >>>> Virtual VPN and Physical VPN setup 
+	- Direct Connect 
+
+
+
+
+1 - Launch a EC2 (your own choice OS) in Private Subnet without public IP 
+2 - Create a EIP and attach to that EC2
+3 - Try to connect that EC2 using EIP >>> will that work ????? yes or no
+3a- Try to connect that EC2 using Private IP >>> will that work ????? yes or no
+4 - Launch a EC2 (windows) in public subnet with Public IP 
+5 - Connect this Windows Machine from your laptop 
+6 - Copy Mobaxterm from your laptop to that Windows Machine 
+7 - Copy Keypair from your laptop to that Windows Machine 
+8 - now try to connect that Private subnet server (using Private IP) from this public subnet server >>> will that work ????? yes or no
+
+
+
+
+15.10.2023
+
+
+
+
+VPN 
+
+Software VPN 
+	- Launch a EC2
+	- Need to configure required Ports 
+	- login the server and download/install that software VPN 
+	- enable the configuration items 
+	- create the required users
+	- Allowing the permissions 
+	- choosing the required IP address 
+	- enabling the WebUI 
+	- etc 
+	
+AMI in the market place >> ready made VPNs >>> $0.02/hr 
+	
+
+
+VPN Lab 
+
+1 - Setup S/W VPN in Public Subnet
+2 - Validate  your admin UI and Client UI is available
+3- Make sure all the port numbers, user name and other configuration Items are selected 
+4 - Launch a Private Subnet server with private IP alone 
+5 - Go the client machine and try to access the client URL 
+6 - Install the client in the local machine 
+7 - Test the connectivity 
+
+
+VPN Admin - Mahesh 
+VPN Client - Ajay Sharma 
+
+
+Marketplace >> Seach - openvpn
+t2.small
+Public Subnet
+enable Public IP 
+
+username of the OpenVPN >>> openvpnas 
+
+Please specify the network interface and IP address to be >>> Choose your EC2 private IP >>> must be option >> 2 
+
+What public/private type/algorithms do you want to use for the OpenVPN CA? >>>> enter 
+
+username Admin UI - OpenVPN
+
+Admin  UI: https://3.25.135.20:943/admin  >>>>>> Mahesh 
+Client UI: https://3.25.135.20:943/ >>>>Ajay 
+
+
+
+Admin UI username - openvpn >>>> PWD - you have given 
+Client UI username - openvpn >>>> PWD - you have given 
+
+
+
+
+
+
+
+
+
+SG Vs NACL 
+
+
+
+Lifecycle Manager 
+
+
+Placement groups https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html
+
+
+etc 
+
+
+
+ASG >>>>> Auto Scaling Group
+
+
+1 - During absence (Downtime or outage or not available)
+2 - Costing 
+
+Launch Template >>>> Collection of your Configuration items, application details, etc 
+
+
+
+
+AMI Vs Launch Template 
+
+
+
+
+
+
+To-Do 
+
+1- when to use ASG group? Is it going to be used even there is no abnormal load on EC2? 
+2 - ASG will be the solution for Costing or Balancing the load or Both? 
+3 - ASG Vs ELB 
+4 - ASG is chargeable or free of cost? 
+
+
+Assignment ??
+
+1 - Launch TWO fresh VPC in the same Region with same CIDR range (Subcomponents of VPC you know them already)
+2 - Launch TWO more VPC in another region with different CIDR Range (Subcomponents of VPC you know them already)
+3 -Launch a Ec2-A in Public Subnet of VPC-1
+4 - Launch a Ec2-B in Private Subnet of VPC-2
+5 - Try to connect them from Ec2-A to Ec2-B 
+6 - Will that be possible if yes how? 
+
+7 - Go the VPC-3 and Launch a Ec2-C in Public Subnet
+8 - Launch a Ec2-D in Public Subnet of VPC-4
+9 - Try to connect them from Ec2-C to Ec2-D 
+10 - Will that be possible if yes how? 
+
+Please Note - OS is your choice 
+EIP or Public IP or any rest options are your choice 
+
+
+
+
+
+ELB 
+
+
+
+Once your done with device creation as mentioned 
+Go inside that device
+
+cd <device name>
+
+vi <file name>
+hit "i" key from your keyboard 
+enter random text
+Shift+: wq! 
+
+and verify that file is created or not by 
+
+ls 
+
+28.10.2023
+
+S3 
+IAM
+EFS 
+ASG 
+ELB 
+etc 
+
+
+
+> EBS >> Local volume
+> AMI >> EC2 Level Backup
+> Snapshot >> EBS Backup
+
+
+
+S3 >> Backup Solution, Restore and recovery Solution, Static Website Hosting >>> your AWS Services, other AWS Services, Other Cloud Platforms and also your on premises 
+
+
+
+VPC 
+EC2 
+EBS 
+
+S3 > Global Service 
+
+1 - Space 
+2 - HA 
+
+
+S3 > Object based storage 
+EBS > Block Storage 
+EFS > File System 
+
+
+Free Tier >> 5GiB 
+
+
+S3 Service >>> Global 
+S3 Bucket >>>> Regional
+
+S3 Bucket name should unique 
+
+
+mahesh@gmail.com 
+mahesh9@gmail.com
+mahesh99@gmail.com 
+
+
+
+
+
+Any format >>>>>> Objects >>>>> Object URL 
+
+
+
+S3 Lab 
+
+1 - Create your First Bucket with default settings 
+2 - Create your second bucket with same name above and see if that is working or not 
+3 - Try with different name and complete 2nd bucket creation 
+4 - Upload a Image into the first bucket and try to access that URL 
+5 - Working or Access Denied? 
+6 - Then go to the S3 Bucket Permissions and unblock the public access 
+7 - Go to the object permissions > enable ACL 
+8 - Edit ACL > everyone > Read 
+9 - Try to access your Object URL and see if that is working 
+10 - go to the second bucket and upload a notepad or word document 
+11 - repeat the same exercise and see if that URL is accessible 
+
+
+
+
+
+
+12 - Go to the second bucket and upload the same file 
+13 - Is it overwritten or both files are there? 
+14 - Can I get both files or the first file? 
+
+
+
+Version
+
+15 - Go to your first bucket, and enable version 
+16 - Upload the same file and see if its overwritten or both files are there 
+17 - go to that show versions radio button and enable it and you can see your both versions
+
+
+
+
+
+18 - Make sure your version is enabled at the Bucket 1 
+19 - Make sure your version is disabled at the Bucket 2
+
+20 - Go to the bucket 1 and enable the show versions 
+21 - now delete the file (when its show version enabled)
+22 - you can see permanently delete option 
+23 - hide the show versions 
+24 - now try to delete the file, this time you will see only delete not the permanently delete option 
+25 - delete it and click on show versions 
+26 - now you can see delete marker
+27 - now delete the delete marker and you can see the file is successfully restored back 
+
+
+28 - Go to the bucket 2 - and version is disabled at the bucket level 
+29 - delete the file and you can only see permanently delete
+30 - click on show versions? Is that file available there? will you able to restore when version is disabled at the bucket end.
+
+
+
+
+
+
+
+
+5GiB 
+
+
+
+100 GB 
+
+1TB 
+
+
+More than 180 days or even longer period 
+
+
+Storage Classes >>>> https://aws.amazon.com/s3/storage-classes/
+
+
+
+6-7 
+
+
+
+Glacier >>>> Archival solution 
+
+
+
+
+
+
+
+
+Life cycle MGMT rule 
+
+
+
+
+
+
+Replication 
+
+1 - Make sure your source and destination bucket is having version enabled 
+2 - go to source bucket management > replication rule > create a rule 
+3 - choose your source bucket > apply all to the objects 
+4 - choose the destination bucket 
+5 - create a new IAM role 
+6 - leave all the objects as it is
+7 - create a rule 
+8 - apply to new objects not to the old objects 
+9 - verify if that replication is happened
+
+
+
+
+29.10.2023
+
+
+S3 Static Website hosting 
+
+Static Vs Dynamic Website hosting
+
+
+
+Index.html 
+error.html (optional)
+
+1 - create a S3 bucket or use your existing bucket 
+2 - Upload your index.html and error.html along with your images if any 
+3 - Go to your bucket properties and enable the Static website hosting
+4 - Try to access that URL and see if that is working or access denied 
+5 - if its not working unblock public access at the bucket level 
+6 - try to access your URL if its working, otherwise go the Access control list and enable 
+7 - Once you enable ACL, select all your objects and go to actions > Make Public Using ACL 
+8 - Try to refresh your website and see if that is working
+
+
+
+etc 
+
+
+
+
+
+
+IAM
+
+? How others will access my AWS account > root user (boss) >>>>> IAM Users 
+? How can I secure my AWS Account >>>> MFA 
+? Are there same level of users for my AWS account >>>> IAM User groups 
+		Admins 
+		Engineers 
+		Support Engineers
+		Trainee 
+		etc 
+		
+		Applications Owners 
+		DB Owners
+		DB users
+		AWS architects 
+		AWS Admins 
+		AWS Engineers 
+		etc 
+
+? How can I grant a permission >> existing IAM Policy or create a custom policy 
+?
+etc 
+
+
+
+IAM Lab 
+
+MFA https://aws.amazon.com/iam/features/mfa/?audit=2019q1
+
+- Go to IAM > Click on Add MFA > Give name of your MFA > Choose Software MFA > Install any application in your mobile from the list 
+- Once installation is done > come to AWS console > click on Show QR Code > Scan it using that mobile app 
+- Enter the first code and wait for second code to generate and enter it either 
+- Then say - Add MFA.
+- Now, Log off from your AWS account and relogin and test if you are asked to enter MFA or not. 
+
+
+mahesh.corp
+
+4 employees 
+
+
+appadmin - EC2 - anowar, ajay, 
+Securityteam - IAM - ajay 
+DBadmin - RDS - vinoth 
+Backupteam - S3 - divya 
+Admin - Raj 
+
+
+
+
+Users and User groups Lab 
+
+- Create a User group with administrator rights 
+- create a second user group with ec2 rights 
+- create first user and add it to the first group 
+- create a second user and add it to the second group 
+
+please note - first user with auto generated pwd 
+					- second user with manual pwd 
+					
+
+
+
+what if user forgot his pwd ? how to reset? >>> Security credentials > manage console access > re-generate the PWD 
+
+what if user is moving out from the team or company? >> Security credentials > manage console access > Disable > Delete 
+
+etc 
+
+
+
+
+
+
+
+
+
+
+EFS (Linux OS )
+
+1 - Create a dedicated SG with port number 2049
+2 - Launch a  EFS using the above port number (Choose Customize Option)
+3 - Launch a EC2 and attach the above port number 
+4 - Install NFS utility inside your OS 
+5 - Do the host entry 
+6 - Mount your EFS 
+7 - Validate that EFS is mounted 
+8 - test it 
+
+
+
+sudo su
+yum install nfs-utils
+
+########    host entry  
+
+vi /etc/hosts
+<IP address of your Mount Target> <EFS DNS> <EFS without FQDN>
+
+172.31.6.11 fs-0059f9517c9c3b8ad.efs.ap-southeast-2.amazonaws.com fs-0059f9517c9c3b8ad
+
+df -h 
+
+mount <EFS DNS>:/ /mnt
+
+
+
+mount fs-0059f9517c9c3b8ad.efs.ap-southeast-2.amazonaws.com:/ /mnt
+
+vi <filename>
+
+
+rm <filename>
+
+
+
+
+EFS Lab 
+
+1 - Create a dedicated SG with port number 2049
+2 - Launch a  EFS using the above SG and port number (Choose Customize Option)
+3 - Launch TWO EC2 and attach the above port number 
+3a - Login to your Fist EC2
+4 - Install NFS utility inside your OS 
+5 - Do the host entry 
+6 - Mount your EFS 
+7 - Validate that EFS is mounted 
+8 - test it by creating a file
+9 - login to your second EC2 instance 
+10 - Install NFS utility inside your OS 
+11 - Do the host entry 
+12 - Mount your EFS 
+13 - Validate that EFS is mounted 
+14 - Check that file whichever you have created in your first EC2 that is existed here in 2nd server 
+15 - Delete this file from the second server and check that is immediately deleted in the first server or not 
+
+
+
+04.11.2023
+
+ASG 
+ELB 
+VPC Peering Connections 
+Transit Gateway
+
+S3 server and client side encryption 
+Bucket policy vs IAM policy
+etc  
+
+
+
+
+How to upgrade your Instance Type 
+*** Stop 
+
+
+Horizontal Scaling (No-Downtime) and Vertical Scaling (Downtime)
+
+ASG - 
+	BAU 
+	Cost Optimization 
+	DR 
+
+
+? Create a Launch a Template and give to ASG >>>> ??? 
+? Min, Max & Desired 
+
+
+Launch Template >>>> OS, Application configurations, or DB Configurations, SG, EBS, Etc 
+
+04.11.2023 >>> V1.0 
+04.11.2024 >>> V2.0 
+
+
+
+
+Create a Launch Template 
+
+- AMI - Amazon Linux
+- Instance Type - t2.micro 
+- Create a SG - Choose HTTP - Anywhere 
+- Advanced Details - User Data - Add below 
+
+#!/bin/bash
+yum update -y
+yum install httpd -y
+systemctl start httpd
+systemctl enable httpd
+echo "<h1>Hello from $(hostname -f)</h1>" > var/www/html/index.html
+
+
+
+Create ASG 
+
+Name it 
+Choose your VPC 
+Choose all the subnets 
+No Load Balancer 
+Health check grace period - 30 sec 
+
+Group size  = Min - 1, Desired - 2, Max - 3 
+
+Make sure - Instance management servers status should be inservice 
+
+
+
+Try to modify your ASG after launch 
+
+and see the result of the instances how they are increasing or decreasing automatically
+
+Terminate all the servers and see if the new servers are launching automatically meeting the min/desired capacity of your ASG
+
+
+Delete ASG - And then Delete your Launch Template
+
+
+
+
+ELB 
+
+4 LB > ALB, NLB, CLB & GWLB 
+
+https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html
+https://docs.aws.amazon.com/elasticloadbalancing/latest/network/network-load-balancer-getting-started.html
+https://docs.aws.amazon.com/elasticloadbalancing/latest/gateway/gateway-load-balancers.html
+
+
+ALB Lab 
+
+1 - Launch TWO EC2 instances 
+	a. One will be International 
+	b. Second will be domestic 
+
+2 - First one keep on one Target Group - Name it as International 
+3 - Second One also keep on second Target Group - Name it as Domestic 
+
+4 - Create a ALB using the First TG 
+5 - Edit your Listener rule and set a rule to route and reroute your traffic 
+
+
+*******************************
+Create a SG 
+with below protocols - Anywhere 
+IPv4	HTTP	TCP	80	0.0.0.0/0
+
+
+
+
+
+
+Launch your first ec2 using below International Script 
+
+Name - international
+AMI - Amazon Linux 
+Instance Type -t2.micro
+Choose your VPC, Public Subnet, Enable Public IP 
+Choose your existing (above) SG 
+Advanced details > update below user data 
+
+#!/bin/bash
+
+yum install httpd -y
+
+systemctl enable httpd
+
+mkdir /var/www/html/international/
+
+echo "<h1>This is international Website</h1>" > var/www/html/international/index.html
+
+systemctl start httpd
+
+	
+	
+	
+Launch your Second ec2 using below domestic Script 
+
+Name - domestic
+AMI - Amazon Linux 
+Instance Type -t2.micro
+Choose your VPC, Public Subnet, Enable Public IP 
+Choose your existing (above) SG 
+Advanced details > update below user data 
+	
+	
+#!/bin/bash
+
+yum install httpd -y
+
+systemctl enable httpd
+
+mkdir /var/www/html/domestic/
+
+echo "<h1>This is domestic Website</h1>" > /var/www/html/domestic/index.html
+
+systemctl start httpd
+	
+	
+	
+
+Create a Target Group 
+
+Choose a target type > Instance 
+Target group name > international
+Choose your VPC 
+Health Checks > path > /international/index.html
+Choose Internal EC2 > Click on > Include as Pending below 
+Create a Target Group
+
+
+
+Choose a target type > Instance 
+Target group name > domestic
+Choose your VPC 
+Health Checks > path > /domestic/index.html
+Choose Internal EC2 > Click on > Include as Pending below 
+Create a Target Group
+	
+	
+	
+Go to the Load Balancer and create a ALB 
+Scheme - Internet-facing 
+Choose your VPC and TWO Subnets and SG 
+
+Under listener rule - Choose International as a Default action 
+
+Once your LB is ready - you will have a one DNS record (A)
+
+
+
+
+Under - Listeners and rules
+Click on your protocol 
+> Click on Add rule > name > Domestic
+
+> Add condition > path > /domestic* > confirm > Next 
+
+Forward to target groups > Choose the TG > domestic 
+
+Priority > 1 >>> Create 
+
+
+
+
+VPC 
+
+More than 1 
+
+One region >>>> 5 VPC max as a soft limit 
+
+
+https://docs.aws.amazon.com/general/latest/gr/aws-service-information.html
+
+
+Remaining VPC >>> same REGION 	or Diff REGION or same AWS Account or Diff AWS account <<<< I want establish a connection 
+
+
+Peering  Connections 
+
+> Establish a connection between your Source VPC to the Destination VPC >>>> 1-1 at a time 
+> while your enabling Peering connection there shouldnt be any same CIDR or Overlapping CIDR 
+
+
+
+Peering Connection Lab 
+
+1 - Choose your requester and accepter VPC (any)
+2 - Make sure there is no SAME or Overlapping CIDR 
+3 - Create a Peering connection request from requester to accepter VPC
+4 - Do the route entry at the both VPC 
+5 - Test the connectivity 
+
+
+
+Lab 
+
+requester VPC > Sydney > 10.0.0.0/24
+Accepter VPC > Oregon > 172.31.0.0/16
+
+
+Go to the peering connections 
+Give the name of your connection 
+Choose your VPC as a requester
+Choose your option like - my account 
+choose your Region whichever you choose 
+
+copy the accepter VPC ID and give it over there 
+
+create a VPC peering connection 
+
+Go to the accepter region 
+
+peering connection 
+
+review and accept it by going to the Actions 
+
+Go to the Requester VPC > routes > add the accepter CIDR 
+Go to the accepter VPC > routes > add the Requester CIDR 
+
+
+
+1 - Both VPC are in the SAME region with out any same CIDR or overlapping CIDR (Region 1)
+2 - Both VPC are in the different region with out any same CIDR or overlapping CIDR (Region 2 & Region 3)
+3 - Another peering connection from VPC from Region 1 to VPC region 2 and there is already a peering connection from Region 2 and 3 
+
+
+Launch a Windows EC2 in the Region 1 VPC 
+Launch a Linux EC2 in the Region 2 and Region 3 VPCs 
+
+Try to connect the servers from VPC 1 to 2  &&& VPC 1 to 3 
+
+Peering connection is not a ""Transitive""
+
+Transit Gateway 
+
+you should take the CIDR which will leads to a common CIDR 
+
+10.0.0.0/24
+10.1.0.0/24
+10.2.0.0/24
+10.3.0.0/24
+
+
+10.0.0.0/8
+
+
+Cleanup above lab 
+
+
+Transit Gateway
+
+- GO to the fresh region 
+- Create 4 VPCs with the below CIDR 
+
+10.0.0.0/24
+10.1.0.0/24
+10.2.0.0/24
+10.3.0.0/24
+
+
+Go to the Transit Gateway - Create it No CIDR as its an optional 
+
+Wait till TGW is successfully created 
+
+Go to Transit Gateway Attachment - Create it 
+Name your VPC and choose your Transit Gateway ID and VPC and then create 
+
+Repeat for all of your VPCs 
+
+Go to the appropriate routes and do the common Route entry - 10.0.0.0/8 
+
+
+
+Now Launch two EC2 instances in any of the two VPC and try to test connectivity
+
+
+ https://docs.aws.amazon.com/vpc/latest/tgw/transit-gateway-quotas.html
+ 
+ 
+ 
+ 
+ 18.11.2023
+ 
+ EFS >>> LInux EC2 >>> 1000 Linux EC2 
+ 
+ Create a Dedicated SG - NFS - 2049 
+ 
+ Launch a EFS using above SG 
+ 
+ Launch a Linux EC2 and install NFS utility and attach above SG 
+ 
+ DNS entry 
+ 
+ Mount 
+ 
+ 
+ 
+ Windows File System >>> FSx 
+ 
+ 
+ FSx Lab 
+ 
+ your windows server need to be added to the domain 
+			>>>> Create one Directory <<<< Directory Service <<< Create <<< 20-45 mints <<< First 30 days 
+			
+https://aws.amazon.com/directoryservice/pricing/
+
+
+Create a Dedicated SG NFS & ALL TCP 
+
+Create a FSx using above SG (15 - 20 Mints)
+
+you can launch your Windows EC2 instance/s 
+
+Add the server into the domain which you have created above 
+
+Map FSx to the above windows EC2 
+
+
+
+
+Create a Directory using a Directory Service 
+
+
+username for the directory is - Admin 
+PWD - Make a note 
+
+Choose your VPC and subnets 
+
+Create 
+
+wait for 20-45 mints 
+
+
+
+
+ Create a SG 
+ 
+ Name - FSx-SG
+ Description - FSx-SG
+  Inbound rule - ALL TCP - Anywhere
+  Inbound rule - NFS - Anywhere
+  
+ 
+ 
+ 
+ Create a FSx
+ 
+ Amazon FSx for Windows File Server
+ Creation Method - Standard create
+ 
+ Name - MyFSx
+ 
+ Deployment type - Multi-AZ 
+ Storage type - SSD 
+ 
+ Leave those options as it is 
+ 
+ Choose your VPC 
+ 
+ Choose your SG - FSx- SG 
+ 
+ Preferred Subnet - Public 
+ Standby - Private 
+ 
+ Windows authentication >> Choose your Directory
+ 
+ Backup and maintenance >> disable 
+ 
+ 
+ Create >>> 15- 20 mints 
+ 
+ 
+ 
+ Create your First Windows EC2 
+ 
+ Launch and then attach your FSx-SG 
+ 
+ Once you login > This PC > Properties > System Advanced Settings > COmputer Name 
+ 
+ 
+ Then >> RUN >>> ncpa.cpl >> right click >>> Properties >> Choose Internet protocol Version 4 >> Properties
+ 
+ Click on Use the following DNS server address 
+ 
+ Now go to the Directory and copy your first DNS and give it there, then copy your second DNS and also paste 
+ 
+ Close 
+ 
+ After updating DNS, go back to system properties >> change >> choose member of domain >>> give your domain name 
+ 
+ example - maheshcorp.com (its mine)
+ 
+ close and then restart your windows EC2 
+ 
+ 
+ Once you relogin the server try to check if that is added to the domain 
+ 
+ 
+ Now go to the FSx copy your File share and go to the PC >> paste and it will ask you to give your user name and pwd 
+ 
+ Create a Folder and subfolder and then a notepad inside 
+ 
+ This PC > right click > map drive > give the share > different credentials > finish 
+ 
+ you can see that share is mapped 
+ 
+ 
+ 
+ once you are done with this, terminate the windows Ec2
+ 
+ Launch a fresh windows EC2 
+ 
+ add the server to the domain 
+ 
+ restart 
+ 
+ access the file system 
+ 
+ whichever Folder and subfolder and then a notepad inside created they will be visible in this branch new windows EC2 
+ 
+ hence proved its a common storage, central repo, shared storage 
+ 
+ 
+ 
+ 1 - I want to track user and service activities ? CloudTrail 
+ 
+ 
+ CloudTrail
+ 
+ 
+ 
+ https://docs.aws.amazon.com/fsx/latest/LustreGuide/getting-started.html
+ 
+ 
+ 
+ 
+ 
+ 19.11.2023
+ 
+ Database
+ 
+ RDS 
+ 
+ Multi-AZ && Read Replica 
+ 
+ 
+ Create a Dedicated SG 
+ Create a RDS Instance 
+ 
+ 
+ 
+ 
+ Launch a new Amazon Linux 2 EC2 instance with the above details and test if its accessible over internet
+ 
+ 
+ Test your RDS instance is responding ???
+ 
+ Copy your public IP and see if you can see word press 
+ 
+ then get in side and provide your user name and all other details 
+ 
+ example - 
+ 
+ DB Name - mahesh
+username - mahesh
+password - mahesh123
+databasehost - DB endpoint
+Remain default 
+Submit >>>> Integration test 
+
+
+Login to your EC2 and follow below steps 
+
+login to the EC2 
+
+cd /var/www/html
+ls 
+
+### NO config file, lets create it 
+
+sudo nano wp-config.php 
+
+update the one which you can see in wordpress page 
+
+Ctrl + X 
+Y
+enter 
+
+
+Test the connectivity from wordpress
+
+Run the installation 
+
+
+
+you should see success in the wordpress
+
+
+ 
+ Login your wordpress and create a post and give that URL in the chat windows
+ 
+ want to create any DB 
+ get that integrated with my wordpress 
+ Test your DB is working 
+ 
+ 
+ 
+ RDS >>> One time backup	>>>> Snapshot 
+		>>>> Automated Backup >>>> 
+		
+		
+DynamoDB 
+
+
+
+25.11.2023
+
+
+ElastiCache
+
+https://aws.amazon.com/elasticache/redis-vs-memcached/
+
+https://aws.amazon.com/elasticache/pricing/
+
+
+Lab 
+
+Create a Dedicated SG 
+
+ALL TCP >> anywhere
+SSH >> anywhere
+
+
+Create a ElastiCache
+Choose Memchached 
+
+creation method >>> Standard
+
+Location >> AWS Cloud 
+
+Cluster name - MyElastiCache
+
+Leave all the Cluster settings as it is, except below 
+
+Node type >> cache.t2.micro
+
+Number of nodes >>> 1 
+
+Create Subnet Group 
+
+Choose your VPC 
+
+Selected subnets >>> Choose your Public Subnets 
+
+
+Availability Zone >>> No preferance 
+
+Next 
+
+Selected security groups >>> Choose your above SG 
+
+Next, Review and Create 
+
+
+it will take time to create and you will get your endpoint 
+
+
+Make a note of your endpoint >>> myelasticache.y86dxt.cfg.apse1.cache.amazonaws.com:11211
+
+
+Launch a "AMazon LInux 2" EC2 in public subnet using the above SG 
+
+Once you logged in 
+
+sudo su 
+
+yum install telnet 
+
+telnet <your enpoint>
+
+# dont forget to remove ":" and give a space before port number 
+
+example - telnet myelasticache.y86dxt.cfg.apse1.cache.amazonaws.com 11211
+
+once you see your endpoint is connected you can set your values and try with the get 
+
+
+set <your suffix> 0 0 <your preferred number >
+get <your suffix>
+
+
+example - set name 0 0 6
+mahesh 
+
+get name 
+mahesh 
+
+
+again you can try with new number but with same suffix
+
+
+
+
+
+Redshift 
+
+
+
+
+SNS & SQS 
+
+
+
+Create a SNS Topic 
+
+Create a Subscription 
+Enable/Approve that 
+
+Publish a Message 
+
+Validate from your inbox 
+
+you can try your official or personnel email address - your choice 
+
+
+
+
+Go to SQS 
+
+Create a queue 
+
+Disable encryption 
+
+Create 
+
+
+
+Go back to SNS 
+
+Create a new Subscription
+
+choose AWS SQS 
+
+Choose your SQS Endpoint 
+
+Create 
+
+
+
+
+Cloudwatch 
+
+
+
+
+
+
+
+
+
+
+Switch to N.V 
+
+Create one SNS topic and add subscription your email 
+
+Go to Cloudwatch
+Billing 
+
+Create Alarm 
+
+Set your budget 
+
+choose >= 
+
+Choose your SNS topic 
+
+REview and create
+
+
+
+
+CloudTrail Vs Cloudwatch
+
+
+26.11.2023
+
+
+SNS & SQS 
+
+
+Create a SNS Topic 
+
+Create a SQS 
+
+Go to the SQS >>> Subscription to the SNS 
+
+Cross verify from the SNS 
+
+From SNS >> publish Notification 
+
+From SQS >> Send & Receive >>> poll for Message
+
+
+
+
+
+
+Lambda 
+
+Ref - https://docs.aws.amazon.com/lambda/latest/dg/with-s3-example.html
+
+Create a custom IAM role for Lambda 
+give permissions for Cloudwatch, S3 and Lambda >> FULL Access 
+
+CloudWatchFullAccess
+AmazonS3FullAccess
+AWSLambda_FullAccess
+
+
+Create a S3 Bucket with default options 
+
+
+Now go to Lambda and create a Function 
+
+Name - as you prefer 
+
+Runtime - Nodejs - 14.x 
+Architecture - x86_64 
+
+Change default execution role >>> Use an existing role >> select the role which you have created above 
+
+Create a Function 
+
+
+Once  you are in "Add Trigger"
+
+Choose S3 as a Source 
+
+Choose your Bucket 
+
+Check the box - acknowledge >>> ADD 
+
+
+Go to the Code at the bottom 
+
+Replace the code with the below code 
+
+
+exports.handler = function(event, context, callback) {
+   console.log("Incoming Event: ", event);
+   const bucket = event.Records[0].s3.bucket.name;
+   const filename = decodeURIComponent(event.Records[0].s3.object.key.replace(/\+/g, ' '));
+   const message = `File is uploaded in - ${bucket} -> ${filename}`;
+   console.log(message);
+   callback(null, message);
+};
+
+
+File >>> Save 
+
+
+Then >>> click on Test >>> Create a new event >>> Name >> S3lambdademo 
+
+Everything remain same >>> Save 
+
+
+Again click on the Test now >>> Make sure your status is ""Success""
+
+
+Then click on Deploy >>> you will see your update >> example - Successfully updated the function s3lambdafunction.
+
+
+Go to the Monitor >> View Cloudwatch Logs >>>> you can see one log group is already created 
+
+
+
+
+
+
+Create a SNS Topic 
+
+EDIT >> Access Policy and replace with below policy
+
+https://docs.aws.amazon.com/AmazonS3/latest/userguide/ways-to-add-notification-config-to-bucket.html#step1-create-sns-topic-for-notification
+
+
+After updating your Bucket Name, SNS ARN, Account ID 
+
+Save 
+
+
+Now go to your S3 Bucket >>> properties >>> Event notifications >> Create >>> Choose All 
+
+Scroll down till you find >> Destination >>> SNS topic >>> Choose your SNS Topic >>> Save 
+
+Do you have any subscriptions at the SNS?????  
+
+
+Add Subscription >> SMS??? email ??? or SQS whatever you prefer
+
+Come to S3 and upload your data and see if you are receiving those notifications
+
+
+
+
+
+
+ElasticBeanstalk
+
+
+Ref - https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.environments.html
+
+Lab 
+
+- Create your IAM Role 
+
+AWS Service >> Use case >> EC2 >>> Next 
+
+Permissions should be >>> AWSElasticBeanstalkWebTier >> create 
+
+
+- Open ElasticBeanstalk
+
+
+Environment tier >>> Web server environment
+Give your Environment Name 
+Domain >> AutoGenerated 
+
+Platform type >> Managed 
+
+Platform >>> PHP 
+
+Leave remaining options as it is 
+
+
+Application code >>> Sample Application
+
+Presets  >>> Single instance 
+
+Next 
+
+
+Service Access >>> Service role >> existing 
+Choose your role and Exisiting keypair and Instance profile will be your role only 
+
+
+Next 
+
+Choose your VPC 
+
+ENable PublicIP
+
+Enable all the subnets or your public
+
+
+Ignore Database for this lab 
+
+
+Leave all the options >>>> Next 
+
+Select your Default Security Group 
+
+Uncheck >>> Managed platform updates
+
+Leave all the options, take a walkthrough 
+
+
+Submit
+
+Monitor the events 
+
+ 
+
+
+02.12.2023
+
+
+
+Migration Services
+
+Developer Tools 
+
+https://www.plutora.com/ci-cd-tools
+
+
+Code Version >>> Version control system 
+
+Build 
+
+Pipeline 
+
+Deploy 
+
+
+
+
+
+
+
+
+File System
+
+EFS 
+
+FSx for windows 
+
+FSx for Linux 
+
+
+Lab 
+https://aws.amazon.com/fsx/pricing/
+https://aws.amazon.com/fsx/lustre/pricing/
+
+
+
+1 - Launch TWO Amazon Linux-2 EC2 instances 
+1a - Make a note of the SG ID - sg-083db11734d0e3df0 <<< example 
+
+2 - Create a Dedicated SG with the port number 988 and the source should be above EC2-SG 
+	Name - FSx-SGforLinux
+	Description - FSx-SGforLinux
+	Type - Custom TCP
+	Port range - 988 
+	Source - above SG which created along with your Linux machine 
+	Create a SG - and make a note of the SG - ID - sg-0e192dc325acb83bb <<< example 
+	
+2a - Edit Inbound Rule 
+	Add Rule 
+	Type - Custom TCP
+	Port range - 988 
+	Source - itself - Same SG which is created
+	Save Rule 
+
+
+3 - Go to your custom VPC >> Edit >> enable DNS host name 
+
+4 - Rename your EC2 instances 
+		1st one - EC2-A
+		2nd one - EC2-B
+
+
+5 - Go to FSx and choose - Amazon FSx for Lustre
+		Deployment and storage type - Persistent, SSD
+		Throughput per unit of storage - 125 MB/s/TiB
+		Storage capacity - 1.2 TB 
+		Choose your VPC 
+		Choose your FSx SG 
+		Choose your public Subnet
+		Disable the Backup and maintenance
+		Next and create
+		
+
+6 - Log into the each EC2 and install Lustre Client 
+
+https://docs.aws.amazon.com/fsx/latest/LustreGuide/install-lustre-client.html
+https://docs.aws.amazon.com/fsx/latest/LustreGuide/mounting-ec2-instance.html
+
+
+
+
+sudo mount -t lustre -o relatime,flock file_system_dns_name@tcp:/mountname /fsx
+
+
+
+sudo mount -t lustre -o relatime,flock fs-036c33dee8a260a92.fsx.ap-southeast-1.amazonaws.com@tcp:/cgw53bmv /fsx
+
+
+
+
+
+
+03.12.2023
+
+
+FSx for Linux 
+
+
+Developer Tools 
+
+https://www.plutora.com/ci-cd-tools
+
+
+
+Lab 
+
+1 - Create a Developer User and download the credentials 
+			Security Credentials > > HTTPS Git credentials for AWS CodeCommit >> Generate credentials >> Download 
+
+2 - Create a Repo in your Code Commit 
+		CodeCommit >> Create repository>>> Name >> Create 
+
+3 - Download and install GitBash in your Windows Laptop 
+		or - Install Git in your terminal - MaCos. 
+		
+		https://git-scm.com/downloads
+		
+		Download it according to your OS 
+		64-bit Git for Windows Setup.
+
+
+4 - Go back to your Repo >>> Right top corner >>> Close URL >> Clone HTTPS >>> you can see your repo URL 
+
+https://git-codecommit.ap-southeast-1.amazonaws.com/v1/repos/myfirstrepo
+
+
+5 - Open GitBash >>> git clone <URL>
+
+it will be asked to provide your credentials >>> copy from your Excel sheet and give it over there 
+
+ git clone https://git-codecommit.us-east-1.amazonaws.com/v1/repos/myfirstrepo
+    3  git clone aQ4fVGWLGBO6qvvEDvmQhMseGGQBTTNvPEDcUBfuMNc=
+    4  git clone https://git-codecommit.us-east-1.amazonaws.com/v1/repos/myfirstrepo
+    5  git status
+    6  git init
+    7  git status
+    8  cd myfirstrepo/
+    9  git status
+   10  git add .
+   11  git commit -m "s3"
+   12  git config --global awscloudarch87@gmail.com
+   13  git config --global user.email awscloudarch87@gmail.com
+   14  git config --global user.name mahesh
+   15  git commit -m "s3"
+   16  git push origin master
+   17  ls
+   18  vi test
+   19  git status
+   20  git add .
+   21  git commit -m "test"
+   22  git push origin master
+   23  git
+   24  clear
+   25  git clone https://git-codecommit.ap-southeast-1.amazonaws.com/v1/repos/myfirstrepo
+   26  cd c:/temp
+   27  cd c:/
+   28  mkdir developerdemo
+   29  cd developerdemo/
+   30  git clone https://git-codecommit.ap-southeast-1.amazonaws.com/v1/repos/myfirstrepo
+   31  ls
+   32  vi codefile1
+   33  cd myfirstrepo/
+   34  ls
+   35  git status
+   36  git add .
+   37  git commit -m "first file"
+   38  git push origin master
+
+
+
+Git Clone <URL>
+
+it will ask you to give your credentials 
+
+ls 
+
+go inside that repo 
+
+cd <repo name>
+
+ls 
+
+no file inside 
+
+
+vi <filename>
+
+press i >> enter your text >>> shft +:wq! 
+
+Git status 
+
+you can see that file is not tracked 
+
+git add . 
+
+git commit -m "random test"
+
+it will ask you to configure your email and the user name for the first time 
+
+
+   13  git config --global user.email <email>
+   14  git config --global user.name <username>
+ 
+ 
+ git push origin master 
+ 
+ 
+
+
+6 - Go to Codepipeline 
+
+create a pipline >> leave all the options as it is >>> Next 
+
+Source >> Code COmmit 
+Repository name >>> your repo 
+Branch Name >> Master 
+
+Build - optional >>> Skip build stage >> skip 
+
+Deploy >>> your S3 >> choose your region >> your bucket >>> next 
+
+Check this box > Extract file before deploy
+
+Next 
+
+
+
+
+
+
+
+
+Assignment 
+
+1 - Whenever you upload a file into your S3 bucket from the above process I want to get a notification to the S3 (SNS)
+2 - Create a S3 static website >> and do that website modification by using the Codepipeline
+
+
+
+
+you will have your S3 website hosting files in your location machine 
+you will have your S3 website hosting files in your bucket 
+
+THEN 
+
+create a new repo with the same name 
+
+place the files inside that repo 
+
+Create your pipeline and get that pushed into your S3 
+
+now you can see the difference 
+
+??? you try to modify your html page 
+
+
+
+
+
+
+9.12.2023
+
+CloudFront >>>> CDN >>> its a Global Service 
+
+
+https://aws.amazon.com/about-aws/global-infrastructure/regions_az/
+
+https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html
+
+
+
+
+
+CloudFront Lab 
+
+1 - Create a S3 bucket if not already, and choose all the default options 
+
+2 - Upload your html page 
+
+Pre-signed URL 
+
+
+3 - Go to CloudFront and create a Distribution 
+
+
+Origin domain  >>> Choose your above bucket 
+Origin access >> Origin access control settings (recommended)
+
+Origin access control >>> Create Control Settings >>> Cross verify your bucket name and make sure your origin type is "S3" >>> Create 
+
+Leave all the options as it is till you find "Web Application Firewall (WAF)"
+
+Choose >>> Do not enable security protections
+
+
+Price class >>> Use all edge locations (best performance)
+
+
+Default root object - optional >>> index.html 
+
+Distribution deployment is started 
+
+In the meantime you have to update your S3 bucket policy 
+
+But where can I get my bucket policy??? its there in the CloudFront dashboard itself ?? 
+you can see the notification >>> The S3 bucket policy needs to be updated >>> click on "Copy Policy"
+
+Bucket >> permissions >>> bucket policy >>> edit >> paste >> Save 
+
+Keep looking at the cloudFront and copy the "Distribution domain name" once your "Last modified" status is changed from "deploying" to your system time.
+
+
+Object URL Vs Pre-signed URL Vs Distribution domain name
+
+
+
+
+
+
+
+
+Global Accelerator 
+
+
+AWS Organization 
+
+https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps_examples_ec2.html
+
+
+
+
+
+
+
+17.12.2023
+
+AWS Backup Service 
+
+
+
+
+EC2 >>> EBS Snapshot or EC2 AMI Backup 
+
+RDS >>> Snapshot 
+
+
+etc 
+
+
+
+
+CloudFormation 
+
+
+
+
+
+IaC >>>> Infrastructure as a Code 
+
+EC2 
+
+s3
+
+
+rds >>> SG >>> N.V >>>> Paris 
+
+
+IaC 
+
+Code >>> Template >>> Diff Region, Diff VPC, Diff Cloud Platforms 
+
+
+IaC >>>> Terraform, CFN, ARM, Pulimi 
+
+
+CFN >>> JSON & YAML 
+
+https://www.json.org/json-en.html
+https://yaml.org/spec/1.2.2/
+
+
+
+3 offerings 
+
+1 >>> Launch using Visual Editor 
+2 >>> Pre-image template 
+3 >>> write your code from scratch 
+
+
+S3 bucket >>> your bucket or AWS will create 
+
+Stack >>>> Job >>>> Task >>> Automation 
+
+
+
+Lab 1 >> CFN Designer 
+
+CloudFormation >>> Create a Stack 
+
+Create template in Designer >> Create template in Designer
+
+Resource types >>> S3 >> drag & Drop 
+
+Check the components & Template 
+
+
+you can rename it (Optional) >>> Validate Template (Tick mark)
+
+Create a Stack >>> (Upload)
+
+you can verify everything 
+
+
+NOw you can see it will be showing as template is ready >> how >>> designer 
+
+
+Give stack name >> leave all the options as it is >>> Submit 
+
+you can monitor events and resources 
+
+after couple of seconds >>> it will be successfull 
+
+
+Later >>> update >>> follow the screen >>>> add one more bucket >>> Submit 
+
+
+you can see one more bucket is creating >>>>> DONE 
+
+ 
+
+
+
+
+
+
