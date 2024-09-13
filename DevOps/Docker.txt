@@ -1,0 +1,159 @@
+Docker is a OS process which uses Linkux features like Namespcae and Cgroup to act as a VM. 
+
+Dokcer images -----> to see all docker iamges
+Docker ps     -----> list of all running containers
+Docker ps -a  -----> list of all the containers [even stopped ones]
+Docker kill   -----> forcefully stops a container
+Dokcer stop   -----> stops the container
+
+docker rm <container id > ---> to delete a stopped container
+
+Dokcer system prune --all ----> deletes everything [images and stopped containers] 
+							  > It doesnot kills the running container or the image associate with that running container
+
+Docker run -d imagename:version . ----> Creates the container [ . here is the build context which holds all the info docker daemon needs]
+									  > -d stands for daemon which allows our container to run in background
+
+Docker tar <current image> <dockerhub format name> -----> Use docker tag command to change the current name of the docker image
+														> After renaming the image the old image with the same imageid will still show. 
+														
+Docker login -----> to log into the Dockerhub
+
+Docker push <image_name>:<tag> ----> push into dockerhub
+
+docker run -p <base_machine_port>:<container_port> image_name -----> -p stands for port
+
+docker attach <container_ID/Name> ----> to go inside a container
+docker exec -it <container_ID> -------> to go inside a container
+
+docker run -dit --name <container_name> --network <bridge_driver> <docker_image> ash ----> run a new container on your docker network [ash is just the shell type]
+
+docker volume ls  ----> shows all volumes
+
+docker volume create <volume_name> -----> creates volume locally
+
+docker run -dit --name <container_name> -v <volume_name>:/<mount_path> <image_name> ash ------> creating a container with locally volume and giving mount path inside the container
+docker run -d --name my_cont -v my_vol:/data ngingx
+
+PS1 = "Container1 $ " ----> to change the prompt
+
+ip addr show -----> to see all the running container subnets and networking details on the host machine
+
+===========
+Dockerfile
+===========
+https://github.com/discover-devops/my-docker ----> By intellipaat
+https://docs.docker.com/reference/dockerfile/ ---> Dockerfile reference by Docker
+
+>>> So all these command are used to create the layer of the image by creating intermidiate containers and executing steps. 
+>>> These layers are called read-only-layers. We can not modify these layers. 
+
+FROM ---> This is the base image [Like an ISO image]
+
+
+RUN ----> Dockerd uses this command to run things which are required for our code. 
+		> The base image creates a intermidiate container after it is pulled from dockerhub
+		> Dockerd uses RUN command to install what we need on top of that intermidiate container. 
+	  >>> Dockerd deletes the intermidiate container after the RUN command is executed and the required software or files are installed. []
+		
+
+CMD ----> This is a startup command for our container
+	  >>> Dockerd again creates a intermidiate container for this and deletes after putting the start/CMD command
+	  >>> In a Dockerfile we can give multiple startup commands. But only the last one will be uses. Instead we can create a shellscript and run that which will execute all the commands.
+
+=======================================================================================	
+	start.sh ----> create a script with all the commands
+	---------------
+	  #!/bin/bash 
+	  command 1 
+	  command 2      
+	  command 3
+	----------------
+	Dockerfile
+	-----------
+	FROM <base image>
+	
+	COPY /* /usr/app/       ------> copy all you required files
+	RUN chmod +x /start.sh  ------> give the shellscript executable permission
+	
+	CMD ["/start.sh"]
+	
+	EXPOSE 5000             ------> expose the port 5000 of the container
+=========================================================================================
+
+-  we can customize our Dockerfile as per our requirment and add differnt stuff like ENV or PORT as per we need.
+-> By default container will not expose any port
+-> One port can be used for one container at a time
+
+- Use the netstat command to list all open ports, including TCP and UDP, which are the most common protocols for packet transmission in the network layer.
+	
+	netstat -lntu
+	
+	all listening sockets (-l)
+	the port number (-n)
+	TCP ports (-t)
+	UDP ports (-u)
+
+- netstat -na | grep :4000   ----> to filter by port
+
+-> Network flows to the container through a NIC [Network Interface Card]
+- Traffic will come to the NIC of the base machine [ec2 instance ] and then go to the container
+- When ever traffic is coming and hitting the port no <xyz> of the NIC of base_machine it will be directed to the container port which is mapped
+-> Base machine port must be opend in the SG to get incoming traffic 
+
+
+========================================================================================================================================================================================
+Docker Network ||
+================
+	
+- When you install docker by default 3 network drivers are installed.
+	- Bridge ---> this is the default driver all containers are going to use [Also known as Docekr0 interface]
+	- host
+	- none
+
+- Each driver has a subnet assigned to them. 
+- For Docker0 for which the driver is Bridge a subnet is also assigned to it. 
+- Docker inspect bridge ---> gives you details of the bridge network. 
+
+--> With the namespace the Virtual interface of the base machine will be divided into multiple interfaces and attached to the containers
+
+--> Request from cotainer ----> Docker0 -----> Base machine NIC or eth0 or network interface -----> Goole.com -----> back to base machine Network Interface ----> Docker0 ----> container
+--> Docker Deamon manages the incoming traffic coming from NIC to the coresponding container
+
+--> When we are using the default bridge driver : DNS is not working or disabled. 
+
+============================
+User defined BRIDGE Driver
+============================
+
+docker network create --driver bridge my-net  ----> creating docker network or new bridge driver
+
+docker run -dit --name <container_name> --network <bridge_driver> <docker_image> ash ----> run a new container on your docker network [ash is just the shell type]
+
+--> This bridge network has DNS features enabled. 
+--> DNS allows us to ping from one container to another by using name instead of the IP 
+--> This is useful if someone changes the CIDR range or the IP of that container is changed we dont have to again define it
+	
+
+====================
+Container VOLUMES
+====================
+
+- When we create a container we get a very thin layer of writebale data. 
+- This data will exist until the container exist. But if the container is removed all the new data we have manually enterned inside the conatiner will be deleted.
+- Volumes are like external storage [like pendrive] where we store our data [Like Ec2 and EBS]
+
+--> Volumes lifecycles are independent to container's 
+
+-> Exactly like ec2 and ebs, we will create volumes and then attach then to conatiners.  
+-> We can attach this volume to multiple containers
+-> Generally we store databases in volumes and attach to multiple containers
+
+
+docker volume ls  ----> shows all volumes
+
+docker volume create <volume_name> -----> creates volume locally
+
+docker run -dit --name <container_name> -v <volume_name>:/<mount_path> <image_name> ash
+docker run -d --name my_cont -v my_vol:/data ngingx
+

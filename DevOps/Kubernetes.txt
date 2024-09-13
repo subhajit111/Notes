@@ -1,0 +1,59 @@
+Kubernetes  
+===========
+- Kubernetes is an open source container orchestration engine for automating deployment, scaling, and management of containerized applications. 
+- The open source project is hosted by the Cloud Native Computing Foundation (CNCF).
+
+====================================================================================================================================================================================
+Architecture of K8s
+====================
+-------------------------------
+- Control Plane [Master Nodes]
+-------------------------------
+	> Kube API server ------> This is kind of an API gateway
+						   -> All communication with k8s will happen over this
+	
+	> scheduler ------------> Decides where to run the pod but does not runs it. It passes that info to Kube API server
+						   -> Inside these pods we have container which will contain our codes 
+	
+	> etcd -----------------> This is a database which contains the status info of the k8s objects
+	
+	> controller manager ---> When current state is not matching the desired state, CM will come in picture
+							> Alz maintains the desired state
+							> In case of mismatch it will ask kube API server to run the conatiners to maintain the desired state  
+		
+----------------------------
+- Data Plane [Worker Nodes]
+----------------------------
+	> kubelet ---------> Agent of k8s that runs in each node
+					   > Always talks to kube API server and notifies him regarding the workernodes health, no of pods running, how is the kube proxy etc
+					   > All worker node has  a kubelet running
+					   > Each kubelet is connected to kube API server 
+	
+	> RUNC ------------> Lunch the container after kubelet asks him
+	
+	> kube proxy ------> Handles the networking in the worker nodes 
+					   > Transfering the traffic to proper container in differ nodes
+					   > communication between different pods or conatiner in same or different worker nodes
+
+======================================================================================================================================================================================================
+
+Scheduler ------> Kube API server -------> Kubelet ------> kube API server -----> etcd ------> kube API server ------> kubelet -------> RUNC -----> runs the docker image and creates a conatiner
+
+
+- Scheduler finds where to run the pod [pod has container which will contain our code] and passes that to Kube API server
+- Kube API server manages all the communication so all things will come to him first
+- Kube API server then reaches out to Kubelet to find the details of the host and ask him to run the pod
+- kubelet alz gives full worker node info to the kube API server 
+- Only Kube API server can reach out to etcd database to store the status newly created things
+- Kubelet asks RUNC to lunch the conatiner and RUNC will download the image and run the conatiner
+
+=======================================================================================================================================================================================================
+What is  POD
+-------------
+- Pod is the smallest unit in k8s
+- Its is basically ATOM of k8s
+- Container always runs inside a pod 
+> One pod can contain one or more than one conatiner
+> If we need data from a container and store them in a database we will create another container inside the pod called "SIDECAR" container
+
+
